@@ -3,4 +3,10 @@
 body {
   margin: 0;
   background-color: $main-color;
+  color: #fff;
+}
+
+.app-wrapper {
+  display: flex;
+  flex-direction: row;
 }

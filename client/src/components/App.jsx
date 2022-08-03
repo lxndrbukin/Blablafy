@@ -1,16 +1,20 @@
 import React from 'react';
 import './App.scss';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import TopBar from './TopBar/TopBar';
 import SideNav from './SideNav/SideNav';
 
 class App extends React.Component {
   render() {
     return (
-      <div className='container'>
-        <BrowserRouter>
+      <BrowserRouter>
+        <div className='app-wrapper'>
           <SideNav />
-        </BrowserRouter>
-      </div>
+          <div className='container'>
+            <TopBar />
+          </div>
+        </div>
+      </BrowserRouter>
     );
   }
 }

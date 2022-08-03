@@ -1,0 +1,48 @@
+@import '../assets/variables.scss';
+
+.top-bar {
+  height: 75px;
+  width: calc(100vw - 100px);
+  border-bottom: 1px solid $border-color;
+  display: flex;
+  flex-direction: row;
+
+  .top-bar_user-profile {
+    width: fit-content;
+    margin: auto 0 auto auto;
+    display: flex;
+
+    .top-bar_user-profile_avatar {
+      height: 60px;
+      width: 60px;
+      background-size: cover;
+      border-radius: 50%;
+    }
+
+    .top-bar_user-profile_details {
+      margin: auto;
+      padding: 0 10px;
+
+      .top-bar_user-profile_status {
+        color: grey;
+      }
+    }
+  }
+
+  .top-bar_search {
+    width: fit-content;
+    margin: auto 0 auto auto;
+
+    input {
+      width: 230px;
+      height: 30px;
+      border-radius: 5px;
+      border: 0;
+      background-color: $link-color;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}

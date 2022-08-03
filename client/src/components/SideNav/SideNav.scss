@@ -3,42 +3,34 @@
 .side-nav {
   height: 100vh;
   width: 100px;
-  background-color: $main-color;
   display: flex;
   flex-direction: column;
   border-right: 1px solid $border-color;
 
   .side-nav_logo {
-    background-color: #fff;
-    border-radius: 50%;
-    width: 50px;
-    height: 40px;
     margin: 0 auto;
+    padding: 10px;
     display: flex;
     justify-content: center;
     position: relative;
     z-index: 1;
 
     .side-nav_logo-text {
+      color: #fff;
+      font-size: 15px;
       height: fit-content;
-      margin: auto;
+      margin: 15px 0 0 0;
       font-weight: bold;
       z-index: 2;
+      position: absolute;
+      transform: rotate(-15deg);
     }
 
-    &::after {
-      content: '';
-      position: absolute;
-      // background-color: #fff;
-      width: 0;
-      height: 0;
-      border: 15px solid transparent;
-      border-top: 0;
-      border-bottom: 30px solid #fff;
-      bottom: -1px;
-      right: 0px;
-      transform: rotate(60deg);
-      z-index: 0;
+    i {
+      color: $link-color;
+      font-size: 55px;
+      z-index: 1;
+      transform: scaleX(-1);
     }
   }
 
