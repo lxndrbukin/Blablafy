@@ -1,11 +1,15 @@
 {
   "dependencies": {
-    "express": "^4.18.1"
+    "cookie-session": "^2.0.0",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^7.1.2"
   },
   "name": "blablafy",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "start": "nodemon index.js"
   },
