@@ -3,6 +3,7 @@ import './App.scss';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import TopBar from './TopBar/TopBar';
 import SideNav from './SideNav/SideNav';
+import Homepage from './Homepage/Homepage';
 
 class App extends React.Component {
   render() {
@@ -12,6 +13,11 @@ class App extends React.Component {
           <SideNav />
           <div className='container'>
             <TopBar />
+            <div className='components-wrapper'>
+              <Routes>
+                <Route path='/' element={<Homepage />} />
+              </Routes>
+            </div>
           </div>
         </div>
       </BrowserRouter>

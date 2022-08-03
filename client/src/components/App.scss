@@ -9,4 +9,12 @@ body {
 .app-wrapper {
   display: flex;
   flex-direction: row;
+
+  .container {
+
+    .components-wrapper {
+      height: calc(100vh - 76px);
+      display: flex;
+    }
+  }
 }

@@ -32,6 +32,7 @@
   .top-bar_search {
     width: fit-content;
     margin: auto 0 auto auto;
+    position: relative;
 
     input {
       width: 230px;
@@ -43,6 +44,12 @@
       &:focus {
         outline: none;
       }
+    }
+
+    i {
+      position: absolute;
+      right: 0;
+      padding: 7px;
     }
   }
 }
