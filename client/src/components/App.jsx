@@ -9,7 +9,7 @@ class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <div className='app-wrapper'>
+        <div className='app-wrapper dark'>
           <SideNav />
           <div className='container'>
             <TopBar />
