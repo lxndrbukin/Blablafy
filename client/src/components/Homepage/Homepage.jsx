@@ -6,7 +6,7 @@ class Homepage extends React.Component {
     return (
       <div className='homepage'>
         <i className='fas fa-comments'></i>
-        <p className='homepage-text'>Welcome to Blablafy!</p>
+        <p className='homepage-text'>Welcome to Blahblahfy!</p>
       </div>
     );
   }

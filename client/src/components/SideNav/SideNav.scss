@@ -9,28 +9,75 @@
 
   .side-nav_logo {
     margin: 0 auto;
-    padding: 10px;
+    padding: 15px;
     display: flex;
     justify-content: center;
     position: relative;
     z-index: 1;
+    border-radius: 15px;
+    background-image: linear-gradient(to bottom left, #5326e6, #8650f5);
+    text-decoration: none;
 
-    .side-nav_logo-text {
-      color: #fff;
-      font-size: 15px;
-      height: fit-content;
-      margin: 15px 0 0 0;
-      font-weight: bold;
-      z-index: 2;
-      position: absolute;
-      transform: rotate(-15deg);
+    &:hover {
+      .eye:nth-of-type(2) {
+        animation-name: wink;
+        animation-duration: 1s;
+      }
     }
 
     i {
-      color: $link-color;
-      font-size: 55px;
+      color: #fff;
+      font-size: 25px;
       z-index: 1;
-      transform: scaleX(-1);
+      position: relative;
+
+      .logo_face {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+
+        .face_eyes {
+          margin: auto;
+          display: flex;
+          justify-content: space-around;
+
+          .eye {
+            background-color: #000;
+            height: 6px;
+            width: 3px;
+            margin: 4px;
+          }
+        }
+
+        .face_smile {
+          width: 8px;
+          height: 2px;
+          background-color: #000;
+          margin: auto;
+          position: relative;
+
+          &:before {
+            content: '';
+            position: absolute;
+            height: 2px;
+            width: 2px;
+            background-color: #000;
+            left: -2px;
+            top: -1px;
+          }
+
+          &:after {
+            content: '';
+            position: absolute;
+            height: 2px;
+            width: 2px;
+            background-color: #000;
+            right: -2px;
+            top: -1px;
+          }
+        }
+      }
     }
   }
 
@@ -38,24 +85,33 @@
     margin: auto;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     position: relative;
 
     .side-nav_button {
       color: $link-color;
-      width: fit-content;
-      margin: auto;
+      width: 55px;
+      height: 55px;
+      display: flex;
+      margin: 5px;
       font-size: 22px;
-      padding: 15px;
+      text-decoration: none;
+
+      i {
+        margin: auto;
+      }
 
       &:hover {
         color: $active-color;
         background-color: $hover-color;
+        border-radius: 15px;
       }
     }
 
     .active-button {
       color: $active-color;
       background-color: $hover-color;
+      border-radius: 15px;
     }
   }
 
@@ -64,5 +120,20 @@
     font-size: 27px;
     margin: 0 auto;
     padding: 15px;
+  }
+}
+
+@keyframes wink {
+  0% {
+    height: 6px;
+    margin: 4px;
+  }
+  50% {
+    height: 3px;
+    margin-top: 6px;
+  }
+  100% {
+    height: 6px;
+    margin: 4px;
   }
 }
