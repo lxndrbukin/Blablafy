@@ -15,7 +15,7 @@
     position: relative;
     z-index: 1;
     border-radius: 15px;
-    background-image: linear-gradient(to bottom left, #5326e6, #8650f5);
+    background-image: $main-gradient;
     text-decoration: none;
 
     &:hover {

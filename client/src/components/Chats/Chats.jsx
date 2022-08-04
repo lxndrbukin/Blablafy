@@ -1,11 +1,14 @@
 import React from 'react';
-import ActiveChats from './ActiveChats/ActiveChats';
+import './Chats.scss';
+import SideChats from './SideChats/SideChats';
+import ActiveChat from './ActiveChat/ActiveChat';
 
 class Chats extends React.Component {
   render() {
     return (
       <div className='chats'>
-        <ActiveChats />
+        <SideChats />
+        <ActiveChat />
       </div>
     );
   }
