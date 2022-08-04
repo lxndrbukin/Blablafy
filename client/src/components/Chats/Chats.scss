@@ -18,6 +18,10 @@
       padding: 5px;
       border-bottom: 1px solid $border-color;
 
+      &:hover {
+        background-color: $hover-color;
+      }
+
       .chat_left {
         .chat_user-avatar {
           height: 50px;
@@ -62,5 +66,16 @@
 
   .active-chat {
     width: 50%;
+
+    .active-chat_user-info {
+      display: flex;
+      border-bottom: 1px solid $border-color;
+      padding: 5px;
+      height: 50px;
+
+      .active-chat_user-info_left {
+        padding: 10px;
+      }
+    }
   }
 }
