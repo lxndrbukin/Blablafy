@@ -1,5 +1,6 @@
 import React from 'react';
 import SideChat from './SideChat';
+import Search from '../../assets/Search';
 
 class SideChats extends React.Component {
   showChats() {
@@ -44,7 +45,12 @@ class SideChats extends React.Component {
   }
 
   render() {
-    return <div className='chats_section'>{this.showChats()}</div>;
+    return (
+      <div className='chats_section'>
+        <Search className='chats_search' placeholder='Chats or messages' />
+        {this.showChats()}
+      </div>
+    );
   }
 }
 

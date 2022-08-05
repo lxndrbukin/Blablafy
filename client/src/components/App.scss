@@ -12,15 +12,30 @@ body {
   &.dark {
     background-color: $main-color;
     color: #fff;
+
+    input {
+      color: #fff;
+    }
+
+    textarea {
+      color: #fff;
+    }
   }
-  
+
   &.light {
     background-color: #fff;
     color: #000;
+
+    input {
+      color: #000;
+    }
+
+    textarea {
+      color: #000;
+    }
   }
 
   .container {
-
     .components-wrapper {
       height: calc(100vh - 76px);
       display: flex;

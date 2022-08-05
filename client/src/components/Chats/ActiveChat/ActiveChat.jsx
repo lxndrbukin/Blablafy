@@ -11,7 +11,21 @@ class ActiveChat extends React.Component {
           </div>
           <div className='active-chat_user-info_right'></div>
         </div>
-        <div className='active-chat_messages'>Message</div>
+        <div className='active-chat_messages-wrapper'>
+          <div className='active-chat_messages'>
+            <div>Messages</div>
+          </div>
+        </div>
+        <form className='active-chat_input'>
+          <textarea
+            placeholder='Write a message...'
+            className='active-chat_input-text'
+            type='text'
+          ></textarea>
+          <button className='active-chat_input-button'>
+            <i className='fab fa-telegram-plane'></i>
+          </button>
+        </form>
       </div>
     );
   }

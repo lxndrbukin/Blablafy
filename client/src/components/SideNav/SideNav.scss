@@ -8,7 +8,7 @@
   border-right: 1px solid $border-color;
 
   .side-nav_logo {
-    margin: 0 auto;
+    margin: 10px auto 0 auto;
     padding: 15px;
     display: flex;
     justify-content: center;
@@ -127,7 +127,7 @@
     margin: 4px;
   }
   50% {
-    height: 3px;
+    height: 2px;
     margin-top: 6px;
   }
   100% {

@@ -35,11 +35,13 @@
     position: relative;
 
     input {
-      width: 230px;
+      width: 200px;
       height: 30px;
       border-radius: 5px;
+      padding-left: 30px;
       border: 0;
-      background-color: $link-color;
+      background-color: rgba(81, 75, 101, 0.3);
+      font-size: 14px;
 
       &:focus {
         outline: none;
@@ -48,8 +50,9 @@
 
     i {
       position: absolute;
-      right: 0;
-      padding: 7px;
+      left: 0;
+      padding: 8px;
+      opacity: 0.5;
     }
   }
 }
