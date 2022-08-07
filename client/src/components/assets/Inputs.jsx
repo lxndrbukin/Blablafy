@@ -1,16 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export const Input = ({ label, input, name, type, value, style }) => {
   return (
     <div className='form-input' style={style}>
       <label>{label}</label>
-      <input
-        type={type}
-        name={name}
-        value={value}
-        {...input}
-        autoComplete='off'
-      />
+      <input type={type} name={name} value={value} {...input} />
     </div>
   );
 };

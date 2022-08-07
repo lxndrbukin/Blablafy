@@ -2,11 +2,16 @@ import React from 'react';
 import { Input } from '../../assets/Inputs';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
+import { createUser } from '../../../actions';
 
 class NewAuth extends React.Component {
+  onSubmit = (formValues) => {
+    this.props.createUser(formValues);
+  };
+
   render() {
     return (
-      <form className='form'>
+      <form className='form' onSubmit={this.props.handleSubmit(this.onSubmit)}>
         <Field component={Input} type='text' label='Username' name='username' />
         <Field
           component={Input}
@@ -20,6 +25,6 @@ class NewAuth extends React.Component {
   }
 }
 
-const newAuth = reduxForm({ form: 'existingAuth' })(NewAuth);
+const newAuth = reduxForm({ form: 'newAuth' })(NewAuth);
 
-export default connect(null)(newAuth);
+export default connect(null, { createUser })(newAuth);

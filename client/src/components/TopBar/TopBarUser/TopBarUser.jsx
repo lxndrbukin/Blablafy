@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { fetchUser, logoutUser } from '../../../actions';
 
-const TopBarUser = ({ currentUser }) => {
+const TopBarUser = ({ currentUser, logoutUser, fetchUser }) => {
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    fetchUser();
+    setUser(currentUser);
+  }, [user]);
+
   const auth = () => {
-    if (currentUser) {
+    if (currentUser && currentUser !== 'Logged Out') {
       return (
-        <div
-          className='top-bar_user-profile_avatar'
-          style={{
-            backgroundImage:
-              "url('https://www.savoric.com/wp-content/uploads/2018/03/profil-pic_dummy.png')",
-          }}
-        ></div>
+        <div onClick={() => logoutUser()} className='auth-button'>
+          <i className='fas fa-sign-out-alt'></i>
+        </div>
       );
     }
     return (
@@ -25,6 +29,13 @@ const TopBarUser = ({ currentUser }) => {
   const miniProfile = () => {
     return (
       <div className='top-bar_user-profile'>
+        <div
+          className='top-bar_user-profile_avatar'
+          style={{
+            backgroundImage:
+              "url('https://www.savoric.com/wp-content/uploads/2018/03/profil-pic_dummy.png')",
+          }}
+        ></div>
         {auth()}
         {/* <div className='top-bar_user-profile_details'>
           <div className='top-bar_user-profile_name'>Name</div>
@@ -43,4 +54,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(TopBarUser);
+export default connect(mapStateToProps, { fetchUser, logoutUser })(TopBarUser);
