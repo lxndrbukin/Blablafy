@@ -1,0 +1,22 @@
+@import '../variables.scss';
+
+a {
+  margin: auto;
+}
+
+.btn {
+  padding: 0 30px;
+  margin: 10px;
+  border: 1px solid;
+  height: 40px;
+  border: 1px solid $active-color;
+  background-color: $active-color;
+  font-size: 17px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

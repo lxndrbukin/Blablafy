@@ -9,7 +9,7 @@
 
   .top-bar_user-profile {
     width: fit-content;
-    margin: auto 0 auto auto;
+    margin: auto 25px auto auto;
     display: flex;
 
     .top-bar_user-profile_avatar {
@@ -55,4 +55,10 @@
       opacity: 0.5;
     }
   }
+}
+
+.auth-button {
+  font-size: 25px;
+  // margin: auto 25px auto auto;
+  color: rgba(255, 255, 255, 0.3);
 }

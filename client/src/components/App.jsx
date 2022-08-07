@@ -5,6 +5,7 @@ import TopBar from './TopBar/TopBar';
 import SideNav from './SideNav/SideNav';
 import Homepage from './Homepage/Homepage';
 import Chats from './Chats/Chats';
+import AuthPage from './Auth/AuthPage';
 
 class App extends React.Component {
   render() {
@@ -18,6 +19,7 @@ class App extends React.Component {
               <Routes>
                 <Route path='/' element={<Homepage />} />
                 <Route path='/chats' element={<Chats />} />
+                <Route path='/auth' element={<AuthPage />} />
               </Routes>
             </div>
           </div>

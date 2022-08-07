@@ -1,0 +1,87 @@
+@import '../assets/variables.scss';
+
+.auth-forms {
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  margin: auto 0;
+
+  .auth-section {
+    margin: 0 auto;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+
+    .auth-section_header {
+      font-weight: bold;
+      font-size: 22px;
+      width: fit-content;
+      margin: auto;
+      padding: 5px 15px 15px 15px;
+    }
+
+    .auth-buttons {
+      display: flex;
+      flex-direction: column;
+
+      .social {
+        display: flex;
+        position: relative;
+
+        i {
+          font-size: 26px;
+          margin: 7.5px 10px;
+          position: absolute;
+        }
+
+        span {
+          margin: auto;
+        }
+      }
+
+      .disabled {
+        display: none;
+      }
+    }
+  }
+
+  .auth-section-separator {
+    width: 50px;
+    position: relative;
+    height: 300px;
+    margin: auto 0;
+
+    &:after {
+      position: absolute;
+      content: '';
+      border-left: 1px solid $border-color;
+      height: 100%;
+      left: 25px;
+      top: 0;
+    }
+
+    .auth-section-separator_icon-wrapper {
+      position: relative;
+      width: 50px;
+      background-color: $main-color;
+      box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.1);
+      height: 50px;
+      top: 40%;
+      border-radius: 50%;
+      z-index: 1;
+      text-align: center;
+      display: flex;
+      margin: auto;
+
+      .auth-section-separator_icon {
+        height: fit-content;
+        margin: auto;
+
+        i {
+          font-size: 25px;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
