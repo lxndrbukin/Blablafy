@@ -1,4 +1,4 @@
-export const userReducer = (state = null, action) => {
+export const userReducer = (state = {}, action) => {
   switch (action.type) {
     case 'CREATE_USER':
       return state, action.payload;

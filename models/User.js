@@ -9,6 +9,7 @@ const userSchema = new Schema({
   email: String,
   username: String,
   avatar: String,
+  chats: [],
   joinMethod: String,
 });
 

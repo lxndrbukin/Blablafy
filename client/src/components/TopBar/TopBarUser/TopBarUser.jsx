@@ -14,7 +14,12 @@ const TopBarUser = ({ currentUser, logoutUser, fetchUser }) => {
   const auth = () => {
     if (currentUser && currentUser !== 'Logged Out') {
       return (
-        <div onClick={() => logoutUser()} className='auth-button'>
+        <div
+          onClick={() => {
+            logoutUser();
+          }}
+          className='auth-button'
+        >
           <i className='fas fa-sign-out-alt'></i>
         </div>
       );
