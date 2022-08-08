@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { fetchUser, logoutUser } from '../../../actions';
+import { fetchCurrentUser, logoutUser } from '../../../actions';
 
-const TopBarUser = ({ currentUser, logoutUser, fetchUser }) => {
+const TopBarUser = ({ currentUser, logoutUser, fetchCurrentUser }) => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    fetchUser();
+    fetchCurrentUser();
     setUser(currentUser);
   }, [user]);
 
@@ -66,4 +66,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchUser, logoutUser })(TopBarUser);
+export default connect(mapStateToProps, { fetchCurrentUser, logoutUser })(
+  TopBarUser
+);

@@ -2,7 +2,7 @@ import React from 'react';
 import './TopBar.scss';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchUsers } from '../../actions';
+import { fetchUsers, fetchUser } from '../../actions';
 import TopBarUser from './TopBarUser/TopBarUser';
 
 class TopBar extends React.Component {
@@ -30,10 +30,11 @@ class TopBar extends React.Component {
         .filter((user) => user.username.includes(this.state.searchRequest))
         .map((user, idx) => {
           return (
-            <NavLink
+            <div
               className='top-bar_search-result'
               key={idx}
-              to={`/profile/${user._id}`}
+              // to={`/profile/${user._id}`}
+              onClick={() => this.props.fetchUser(user._id)}
             >
               <div
                 className='top-bar_search-result_avatar'
@@ -45,7 +46,7 @@ class TopBar extends React.Component {
               <div className='top-bar_search-result_username'>
                 {user.username}
               </div>
-            </NavLink>
+            </div>
           );
         });
     }
@@ -95,4 +96,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchUsers })(TopBar);
+export default connect(mapStateToProps, { fetchUsers, fetchUser })(TopBar);

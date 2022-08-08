@@ -12,4 +12,9 @@ module.exports = (app) => {
       res.send(users);
     }).clone();
   });
+  app.get('/api/users/:id', async (req, res) => {
+    await User.find({ _id: req.body._id }, (err, user) => {
+      res.send(user);
+    }).clone();
+  });
 };

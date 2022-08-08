@@ -15,12 +15,17 @@ export const logoutUser = () => async (dispatch) => {
   dispatch({ type: 'LOGOUT_USER', payload: res.data });
 };
 
-export const fetchUser = () => async (dispatch) => {
+export const fetchCurrentUser = () => async (dispatch) => {
   const res = await axios.get('/api/current_user');
+  dispatch({ type: 'FETCH_CURRENT_USER', payload: res.data });
+};
+
+export const fetchUser = (_id) => async (dispatch) => {
+  const res = await axios.get(`/api/users/${_id}`, { ..._id });
   dispatch({ type: 'FETCH_USER', payload: res.data });
 };
 
 export const fetchUsers = () => async (dispatch) => {
   const res = await axios.get('/api/users');
-  dispatch({type: 'FETCH_USERS', payload: res.data});
-}
+  dispatch({ type: 'FETCH_USERS', payload: res.data });
+};
