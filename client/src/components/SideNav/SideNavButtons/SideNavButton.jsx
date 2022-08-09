@@ -6,11 +6,14 @@ const SideNavButton = ({ name, icon, url, currentUser }) => {
   return (
     <NavLink
       to={
-        url === '/profile' && currentUser ? `/profile/${currentUser._id}` : url
+        url === '/profile' && currentUser && currentUser !== ''
+          ? `/profile/${currentUser.userId}`
+          : url
       }
-      className={({ isActive }) =>
-        isActive ? 'side-nav_button active-button' : 'side-nav_button'
-      }
+      exact
+      className='side-nav_button'
+      activeClassName='active-button'
+      title={name}
     >
       <i className={`fas ${icon}`}></i>
     </NavLink>

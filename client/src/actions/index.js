@@ -20,8 +20,8 @@ export const fetchCurrentUser = () => async (dispatch) => {
   dispatch({ type: 'FETCH_CURRENT_USER', payload: res.data });
 };
 
-export const fetchUser = (_id) => async (dispatch) => {
-  const res = await axios.get(`/api/users/${_id}`, { ..._id });
+export const fetchUser = (userId) => async (dispatch) => {
+  const res = await axios.get(`/api/user/`, { ...userId });
   dispatch({ type: 'FETCH_USER', payload: res.data });
 };
 

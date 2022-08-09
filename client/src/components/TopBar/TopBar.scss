@@ -39,17 +39,27 @@
     margin: auto;
     position: relative;
 
-    input {
-      width: 200px;
-      height: 30px;
-      border-radius: 5px;
-      padding-left: 30px;
-      border: 0;
-      background-color: rgba(81, 75, 101, 0.3);
-      font-size: 14px;
+    .top-bar_search-input-wrapper {
+      position: relative;
 
-      &:focus {
-        outline: none;
+      input {
+        width: 200px;
+        height: 30px;
+        padding-left: 30px;
+        border: 0;
+        background-color: rgba(81, 75, 101, 0.3);
+        font-size: 14px;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      i {
+        position: absolute;
+        left: 0;
+        padding: 8px;
+        color: rgba(255, 255, 255, 0.3);
       }
     }
 
@@ -58,7 +68,8 @@
       background-color: $border-color;
       padding: 10px;
       width: calc(100% - 20px);
-      min-height: 50px;
+      height: fit-content;
+      z-index: 3;
 
       .top-bar_search-result {
         display: flex;

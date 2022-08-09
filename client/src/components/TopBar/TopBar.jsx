@@ -2,7 +2,7 @@ import React from 'react';
 import './TopBar.scss';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchUsers, fetchUser } from '../../actions';
+import { fetchUsers } from '../../actions';
 import TopBarUser from './TopBarUser/TopBarUser';
 
 class TopBar extends React.Component {
@@ -25,16 +25,15 @@ class TopBar extends React.Component {
   }
 
   searchResult() {
-    if (this.state.searchRequest !== '') {
+    if (this.state.searchRequest !== '' && this.props.users.length !== 0) {
       return this.props.users
         .filter((user) => user.username.includes(this.state.searchRequest))
         .map((user, idx) => {
           return (
-            <div
+            <NavLink
               className='top-bar_search-result'
               key={idx}
-              // to={`/profile/${user._id}`}
-              onClick={() => this.props.fetchUser(user._id)}
+              to={`/profile/${user.userId}`}
             >
               <div
                 className='top-bar_search-result_avatar'
@@ -46,9 +45,24 @@ class TopBar extends React.Component {
               <div className='top-bar_search-result_username'>
                 {user.username}
               </div>
-            </div>
+            </NavLink>
           );
         });
+    } else {
+      return 'Loading';
+    }
+  }
+
+  showResult() {
+    if (
+      this.props.users.length !== 0 &&
+      this.props.users.filter((user) =>
+        user.username.includes(this.state.searchRequest)
+      ).length === 0
+    ) {
+      return 'No results';
+    } else {
+      return this.searchResult();
     }
   }
 
@@ -56,17 +70,20 @@ class TopBar extends React.Component {
     return (
       <div className='top-bar'>
         <div className='top-bar_search'>
-          <input
-            onClick={(e) => {
-              this.changeState(e);
-              this.search();
-            }}
-            onChange={(e) => {
-              this.changeState(e);
-            }}
-            type='text'
-            placeholder='Find people here'
-          />
+          <div className='top-bar_search-input-wrapper'>
+            <input
+              onClick={(e) => {
+                this.changeState(e);
+              }}
+              onChange={(e) => {
+                this.changeState(e);
+                setTimeout(this.props.fetchUsers, 1500);
+              }}
+              type='text'
+              placeholder='Find people here'
+            />
+            <i className='fas fa-search'></i>
+          </div>
           <div
             className='top-bar_search-box'
             style={
@@ -81,7 +98,7 @@ class TopBar extends React.Component {
               this.setState({ searchRequest: this.state.searchRequest });
             }}
           >
-            {this.searchResult()}
+            {this.showResult()}
           </div>
         </div>
         <TopBarUser />
@@ -96,4 +113,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchUsers, fetchUser })(TopBar);
+export default connect(mapStateToProps, { fetchUsers })(TopBar);

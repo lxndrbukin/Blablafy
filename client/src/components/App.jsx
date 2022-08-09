@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import TopBar from './TopBar/TopBar';
 import SideNav from './SideNav/SideNav';
@@ -13,7 +13,7 @@ class App extends React.Component {
   renderAuthPage() {
     const { currentUser } = this.props;
     if (currentUser && currentUser !== 'Logged Out') {
-      return <Navigate to='/' />;
+      return <Redirect to='/' />;
     } else {
       return <AuthPage />;
     }
@@ -27,12 +27,12 @@ class App extends React.Component {
           <div className='container'>
             <TopBar />
             <div className='components-wrapper'>
-              <Routes>
-                <Route path='/' element={<Homepage />} />
-                <Route path='/chats' element={<Chats />} />
-                <Route path='/auth' element={this.renderAuthPage()} />
-                <Route path='/profile/:id' element={<Profile />} />
-              </Routes>
+              <Switch>
+                <Route path='/' exact component={Homepage} />
+                <Route path='/chats' exact component={Chats} />
+                <Route path='/auth' exact component={AuthPage} />
+                <Route path='/profile/:id' exact component={Profile} />
+              </Switch>
             </div>
           </div>
         </div>

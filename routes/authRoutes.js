@@ -20,8 +20,12 @@ module.exports = (app) => {
   });
 
   app.post('/register', async (req, res) => {
+    const id = await User.countDocuments({}, (err, count) => {
+      return count;
+    }).clone();
+
     await User.register(
-      { username: req.body.username },
+      { username: req.body.username, userId: id + 1 },
       req.body.password,
       (err, user) => {
         if (err) {
@@ -31,6 +35,7 @@ module.exports = (app) => {
             req,
             res,
             () => {
+              console.log(`User ${user.username} registered`);
               return res.send(user);
             }
           );
