@@ -1,0 +1,48 @@
+@import '../assets//variables.scss';
+
+.profile {
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px;
+
+  .profile-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .profile-nickname {
+      width: fit-content;
+      margin: auto;
+    }
+
+    .profile-details_avatar {
+      padding: 10px;
+      margin: auto;
+
+      img {
+        width: 200px;
+        height: 200px;
+      }
+    }
+
+    .profile-details_info {
+      display: flex;
+
+      .profile-data {
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+
+        .profile-data-header {
+          font-weight: bold;
+          font-size: 20px;
+        }
+
+        .profile-data-info {
+          font-size: 20px;
+          margin: auto;
+        }
+      }
+    }
+  }
+}

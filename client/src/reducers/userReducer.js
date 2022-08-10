@@ -8,6 +8,8 @@ export const userReducer = (state = {}, action) => {
       return state, action.payload;
     case 'LOGOUT_USER':
       return state, action.payload;
+    case 'SEND_REQUEST':
+      return state, action.payload;
     default:
       return state;
   }

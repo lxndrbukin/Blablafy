@@ -6,24 +6,31 @@
   border-bottom: 1px solid $border-color;
   display: flex;
   flex-direction: row;
+  z-index: 3;
 
   .top-bar_user-profile-wrapper {
     width: fit-content;
     min-width: 105px;
     display: flex;
+    height: fit-content;
 
     .top-bar_user-profile-container {
+      width: fit-content;
+      height: fit-content;
+      margin: auto;
       position: relative;
 
       .top-bar_user-profile {
-        margin: auto;
         display: flex;
+        justify-content: center;
+        height: 76px;
 
         .top-bar_user-profile_avatar {
           height: 60px;
           width: 60px;
           background-size: cover;
           border-radius: 50%;
+          margin: auto;
         }
 
         .top-bar_user-profile_details {
@@ -39,8 +46,11 @@
       .top-bar_user-profile-menu {
         background-color: $border-color;
         position: absolute;
-        padding: 5px;
-        margin-top: 16px;
+        padding: 10px;
+        margin-top: 4px;
+        z-index: 3;
+        width: 75px;
+        height: fit-content;
 
         &:before {
           content: '';
@@ -60,6 +70,15 @@
 
           .profile-button {
             margin: 5px;
+            
+            button {
+              width: 100%;
+              background-color: $link-color;
+              border: none;
+              color: #fff;
+              padding: 5px;
+              cursor: pointer;
+            }
           }
         }
       }
@@ -68,7 +87,7 @@
 
   .top-bar_search {
     width: fit-content;
-    margin: auto;
+    margin: auto auto auto 25px;
     position: relative;
 
     .top-bar_search-input-wrapper {
@@ -101,7 +120,7 @@
       padding: 10px;
       width: calc(100% - 20px);
       height: fit-content;
-      z-index: 3;
+      z-index: 2;
 
       .top-bar_search-result {
         display: flex;
@@ -131,7 +150,7 @@
 
 .auth-button {
   font-size: 25px;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.3) !important;
   height: fit-content;
   margin: auto 0;
   padding: 10px;

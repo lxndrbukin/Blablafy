@@ -49,6 +49,8 @@ body {
     .components-wrapper {
       height: calc(100vh - 76px);
       display: flex;
+      position: relative;
+      z-index: 0;
     }
   }
 }

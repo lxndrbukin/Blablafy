@@ -1,7 +1,13 @@
 import axios from 'axios';
 
 export const createUser = (formValues) => async (dispatch) => {
-  const res = await axios.post('/register', { ...formValues, chats: [] });
+  const res = await axios.post('/register', {
+    ...formValues,
+    chats: [],
+    friends: [],
+    friendRequests: [],
+    sentRequests: [],
+  });
   dispatch({ type: 'CREATE_USER', payload: res.data });
 };
 
@@ -29,3 +35,13 @@ export const fetchUsers = () => async (dispatch) => {
   const res = await axios.get('/api/users');
   dispatch({ type: 'FETCH_USERS', payload: res.data });
 };
+
+export const sendFriendRequest = (_id, user) => async (dispatch) => {
+  const res = await axios.put('/api/current_user', { _id, user });
+  dispatch({ type: 'SEND_REQUEST', payload: res.data });
+};
+
+export const receiveFriendRequest = (userId, currentUser) => async (dispatch) => {
+  const res = await axios.put('/api/users', {userId, currentUser});
+  dispatch({ type: 'RECEIVE_REQUEST', payload: res.data });
+}

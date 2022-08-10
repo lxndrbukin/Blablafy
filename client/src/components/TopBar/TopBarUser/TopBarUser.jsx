@@ -1,23 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchCurrentUser, logoutUser } from '../../../actions';
 import TopBarUserMenu from './TopBarUserMenu';
 
-const TopBarUser = ({ currentUser, logoutUser, fetchCurrentUser }) => {
-  const [user, setUser] = useState({});
+class TopBarUser extends React.Component {
+  state = {
+    user: {},
+    showMenu: false,
+  };
 
-  useEffect(() => {
-    fetchCurrentUser();
-    setUser(currentUser);
-  }, [user]);
+  componentDidMount = () => {
+    this.props.fetchCurrentUser();
+    this.setState({ user: this.props.currentUser });
+  };
 
-  const auth = () => {
+  auth = () => {
+    const { currentUser } = this.props;
     if (currentUser && currentUser !== 'Logged Out') {
       return (
         <div
           onClick={() => {
-            logoutUser();
+            this.props.logoutUser();
           }}
           className='auth-button'
         >
@@ -41,10 +45,16 @@ const TopBarUser = ({ currentUser, logoutUser, fetchCurrentUser }) => {
   //   }
   // };
 
-  const miniProfile = () => {
+  miniProfile = () => {
+    const { currentUser } = this.props;
+    const { showMenu } = this.state;
     return (
       <div className='top-bar_user-profile-wrapper'>
-        <div className='top-bar_user-profile-container'>
+        <div
+          className='top-bar_user-profile-container'
+          onMouseOver={() => this.setState({ showMenu: true })}
+          onMouseOut={() => this.setState({ showMenu: false })}
+        >
           <div className='top-bar_user-profile'>
             <div
               className='top-bar_user-profile_avatar'
@@ -54,15 +64,17 @@ const TopBarUser = ({ currentUser, logoutUser, fetchCurrentUser }) => {
               }}
             ></div>
           </div>
-          <TopBarUserMenu userId={currentUser.userId} />
+          <TopBarUserMenu showMenu={showMenu} userId={currentUser.userId} />
         </div>
-        {auth()}
+        {this.auth()}
       </div>
     );
   };
 
-  return miniProfile();
-};
+  render() {
+    return this.miniProfile();
+  }
+}
 
 const mapStateToProps = (state) => {
   return {

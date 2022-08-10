@@ -25,9 +25,11 @@ class TopBar extends React.Component {
   }
 
   searchResult() {
-    if (this.state.searchRequest !== '' && this.props.users.length !== 0) {
+    const { searchRequest } = this.state;
+    const { users } = this.props;
+    if (searchRequest !== '' && users.length !== 0) {
       return this.props.users
-        .filter((user) => user.username.includes(this.state.searchRequest))
+        .filter((user) => user.username.includes(searchRequest))
         .map((user, idx) => {
           return (
             <NavLink
@@ -54,11 +56,11 @@ class TopBar extends React.Component {
   }
 
   showResult() {
+    const { users } = this.props;
+    const { searchRequest } = this.state;
     if (
-      this.props.users.length !== 0 &&
-      this.props.users.filter((user) =>
-        user.username.includes(this.state.searchRequest)
-      ).length === 0
+      users.length !== 0 &&
+      users.filter((user) => user.username.includes(searchRequest)).length === 0
     ) {
       return 'No results';
     } else {
@@ -67,6 +69,8 @@ class TopBar extends React.Component {
   }
 
   render() {
+    const { fetchUsers } = this.props;
+    const { searchRequest } = this.state;
     return (
       <div className='top-bar'>
         <div className='top-bar_search'>
@@ -77,7 +81,7 @@ class TopBar extends React.Component {
               }}
               onChange={(e) => {
                 this.changeState(e);
-                setTimeout(this.props.fetchUsers, 1500);
+                setTimeout(fetchUsers, 1500);
               }}
               type='text'
               placeholder='Find people here'
@@ -95,7 +99,7 @@ class TopBar extends React.Component {
               this.setState({ searchWindow: false });
             }}
             onFocus={() => {
-              this.setState({ searchRequest: this.state.searchRequest });
+              this.setState({ searchRequest: searchRequest });
             }}
           >
             {this.showResult()}

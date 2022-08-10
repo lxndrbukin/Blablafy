@@ -1,6 +1,11 @@
 import React from 'react';
+import './Profile.scss';
 import { connect } from 'react-redux';
-import { fetchUsers } from '../../actions';
+import {
+  fetchUsers,
+  sendFriendRequest,
+  receiveFriendRequest,
+} from '../../actions';
 import ProfileDetails from './ProfileDetails/ProfileDetails';
 
 class Profile extends React.Component {
@@ -11,24 +16,61 @@ class Profile extends React.Component {
     }
   }
 
+  buttons() {
+    const { currentUser, match, user } = this.props;
+    if (
+      (currentUser && currentUser.userId !== parseInt(match.params.id)) ||
+      currentUser === ''
+    ) {
+      return (
+        <button
+          onClick={() => {
+            this.props.sendFriendRequest(currentUser._id, user);
+            this.props.receiveFriendRequest(user.userId, currentUser);
+          }}
+        >
+          Add to Friends
+        </button>
+      );
+    }
+    return;
+  }
+
   showDetails() {
     const { currentUser, match, user } = this.props;
     if (currentUser && currentUser.userId === parseInt(match.params.id)) {
       return (
         <ProfileDetails
-          username={currentUser ? currentUser.username : 'Loading'}
+          username={currentUser ? currentUser.username : []}
+          friends={currentUser ? currentUser.friends : []}
+          friendRequests={currentUser ? currentUser.friendRequests : []}
+          sentRequests={currentUser ? currentUser.sentRequests : []}
+          pageId={match.params.id}
         />
       );
     } else if (
       (currentUser && currentUser.userId !== parseInt(match.params.id)) ||
       currentUser === ''
     ) {
-      return <ProfileDetails username={user ? user.username : 'Loading'} />;
+      return (
+        <ProfileDetails
+          username={user ? user.username : []}
+          friends={user ? user.friends : []}
+          friendRequests={user ? user.friendRequests : []}
+          sentRequests={user ? user.sentRequests : []}
+          pageId={match.params.id}
+        />
+      );
     }
   }
 
   render() {
-    return <div className='profile'>{this.showDetails()}</div>;
+    return (
+      <div className='profile'>
+        {this.showDetails()}
+        {this.buttons()}
+      </div>
+    );
   }
 }
 
@@ -39,4 +81,8 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchUsers })(Profile);
+export default connect(mapStateToProps, {
+  fetchUsers,
+  sendFriendRequest,
+  receiveFriendRequest,
+})(Profile);

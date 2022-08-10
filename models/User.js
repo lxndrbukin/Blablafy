@@ -10,8 +10,10 @@ const userSchema = new Schema(
     email: String,
     username: String,
     avatar: String,
-    chats: [],
-    joinMethod: String,
+    chats: [Object],
+    friends: [Object],
+    friendRequests: [Object],
+    sentRequests: [Object],
   },
   { versionKey: false }
 );
