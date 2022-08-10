@@ -16,21 +16,26 @@ class Profile extends React.Component {
     }
   }
 
+  friendRequest() {
+    const { currentUser, user } = this.props;
+    this.props.sendFriendRequest(currentUser._id, {
+      userId: user.userId,
+      username: user.username,
+    });
+    this.props.receiveFriendRequest(user.userId, {
+      userId: currentUser.userId,
+      username: currentUser.username,
+    });
+  }
+
   buttons() {
-    const { currentUser, match, user } = this.props;
+    const { currentUser, match } = this.props;
     if (
       (currentUser && currentUser.userId !== parseInt(match.params.id)) ||
       currentUser === ''
     ) {
       return (
-        <button
-          onClick={() => {
-            this.props.sendFriendRequest(currentUser._id, user);
-            this.props.receiveFriendRequest(user.userId, currentUser);
-          }}
-        >
-          Add to Friends
-        </button>
+        <button onClick={() => this.friendRequest()}>Add to Friends</button>
       );
     }
     return;

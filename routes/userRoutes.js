@@ -14,7 +14,6 @@ module.exports = (app) => {
       },
       { new: true, safe: true, upsert: true }
     ).clone();
-    console.log(user);
     user.save();
     res.send(user);
   });
@@ -30,8 +29,9 @@ module.exports = (app) => {
       { userId: req.body.userId },
       { $push: { friendRequests: req.body.currentUser } }
     ).clone();
-    console.log(user);
     user.save();
-    res.send(user);
+    await User.find({}, (err, users) => {
+      res.send(users);
+    }).clone();
   });
 };

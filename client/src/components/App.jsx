@@ -23,7 +23,6 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <div className='app-wrapper dark'>
-          <SideNav />
           <div className='container'>
             <TopBar />
             <div className='components-wrapper'>

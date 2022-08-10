@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Profile",
+    "url": "/profile",
+    "icon": "fa-user-circle"
+  },
+  {
+    "name": "Friends",
+    "url": "/friends",
+    "icon": "fa-user-friends"
+
+  },
+  {  
+    "name": "Chats",
+    "url": "/chats",
+    "icon": "fa-comment"
+
+  },
+  {
+    "name": "Settings",
+    "url": "/settings",
+    "icon": "fa-cog"
+  }
+]

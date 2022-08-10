@@ -3,7 +3,9 @@ import './TopBar.scss';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchUsers } from '../../actions';
+import TopBarLogo from './TopBarLogo/TopBarLogo';
 import TopBarUser from './TopBarUser/TopBarUser';
+import TopBarButtons from './TopBarButtons/TopBarButtons';
 
 class TopBar extends React.Component {
   state = {
@@ -72,40 +74,44 @@ class TopBar extends React.Component {
     const { fetchUsers } = this.props;
     const { searchRequest } = this.state;
     return (
-      <div className='top-bar'>
-        <div className='top-bar_search'>
-          <div className='top-bar_search-input-wrapper'>
-            <input
-              onClick={(e) => {
-                this.changeState(e);
+      <div className='top-bar_wrapper'>
+        <div className='top-bar'>
+          <TopBarLogo />
+          <div className='top-bar_search'>
+            <div className='top-bar_search-input-wrapper'>
+              <input
+                onClick={(e) => {
+                  this.changeState(e);
+                }}
+                onChange={(e) => {
+                  this.changeState(e);
+                  setTimeout(fetchUsers, 1500);
+                }}
+                type='text'
+                placeholder='Find people here'
+              />
+              <i className='fas fa-search'></i>
+            </div>
+            <div
+              className='top-bar_search-box'
+              style={
+                this.state.searchWindow
+                  ? { display: 'block' }
+                  : { display: 'none' }
+              }
+              onMouseLeave={() => {
+                this.setState({ searchWindow: false });
               }}
-              onChange={(e) => {
-                this.changeState(e);
-                setTimeout(fetchUsers, 1500);
+              onFocus={() => {
+                this.setState({ searchRequest: searchRequest });
               }}
-              type='text'
-              placeholder='Find people here'
-            />
-            <i className='fas fa-search'></i>
+            >
+              {this.showResult()}
+            </div>
           </div>
-          <div
-            className='top-bar_search-box'
-            style={
-              this.state.searchWindow
-                ? { display: 'block' }
-                : { display: 'none' }
-            }
-            onMouseLeave={() => {
-              this.setState({ searchWindow: false });
-            }}
-            onFocus={() => {
-              this.setState({ searchRequest: searchRequest });
-            }}
-          >
-            {this.showResult()}
-          </div>
+          <TopBarButtons />
+          <TopBarUser />
         </div>
-        <TopBarUser />
       </div>
     );
   }
