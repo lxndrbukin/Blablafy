@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchCurrentUser, logoutUser } from '../../../actions';
+import TopBarUserMenu from './TopBarUserMenu';
 
 const TopBarUser = ({ currentUser, logoutUser, fetchCurrentUser }) => {
   const [user, setUser] = useState({});
@@ -43,14 +44,17 @@ const TopBarUser = ({ currentUser, logoutUser, fetchCurrentUser }) => {
   const miniProfile = () => {
     return (
       <div className='top-bar_user-profile-wrapper'>
-        <div className='top-bar_user-profile'>
-          <div
-            className='top-bar_user-profile_avatar'
-            style={{
-              backgroundImage:
-                "url('https://www.savoric.com/wp-content/uploads/2018/03/profil-pic_dummy.png')",
-            }}
-          ></div>
+        <div className='top-bar_user-profile-container'>
+          <div className='top-bar_user-profile'>
+            <div
+              className='top-bar_user-profile_avatar'
+              style={{
+                backgroundImage:
+                  "url('https://www.savoric.com/wp-content/uploads/2018/03/profil-pic_dummy.png')",
+              }}
+            ></div>
+          </div>
+          <TopBarUserMenu userId={currentUser.userId} />
         </div>
         {auth()}
       </div>

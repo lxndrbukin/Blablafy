@@ -20,6 +20,11 @@ body {
     textarea {
       color: #fff;
     }
+
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
   }
 
   &.light {
@@ -32,6 +37,11 @@ body {
 
     textarea {
       color: #000;
+    }
+
+    a {
+      color: #fff;
+      text-decoration: none;
     }
   }
 

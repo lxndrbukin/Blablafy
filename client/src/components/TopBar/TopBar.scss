@@ -12,23 +12,55 @@
     min-width: 105px;
     display: flex;
 
-    .top-bar_user-profile {
-      margin: auto;
-      display: flex;
+    .top-bar_user-profile-container {
+      position: relative;
 
-      .top-bar_user-profile_avatar {
-        height: 60px;
-        width: 60px;
-        background-size: cover;
-        border-radius: 50%;
+      .top-bar_user-profile {
+        margin: auto;
+        display: flex;
+
+        .top-bar_user-profile_avatar {
+          height: 60px;
+          width: 60px;
+          background-size: cover;
+          border-radius: 50%;
+        }
+
+        .top-bar_user-profile_details {
+          margin: auto;
+          padding: 0 10px;
+
+          .top-bar_user-profile_status {
+            color: grey;
+          }
+        }
       }
 
-      .top-bar_user-profile_details {
-        margin: auto;
-        padding: 0 10px;
+      .top-bar_user-profile-menu {
+        background-color: $border-color;
+        position: absolute;
+        padding: 5px;
+        margin-top: 16px;
 
-        .top-bar_user-profile_status {
-          color: grey;
+        &:before {
+          content: '';
+          position: absolute;
+          width: 16px;
+          height: 16px;
+          background-color: $border-color;
+          top: -8px;
+          left: 22px;
+          transform: rotate(45deg);
+        }
+
+        .top-bar_user-profile-menu_buttons {
+          display: flex;
+          flex-direction: column;
+          height: fit-content;
+
+          .profile-button {
+            margin: 5px;
+          }
         }
       }
     }
