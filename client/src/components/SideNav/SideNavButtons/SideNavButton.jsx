@@ -16,6 +16,7 @@ const SideNavButton = ({ name, icon, url, currentUser }) => {
       title={name}
     >
       <i className={`fas ${icon}`}></i>
+      <span>{name}</span>
     </NavLink>
   );
 };

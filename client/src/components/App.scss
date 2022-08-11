@@ -48,9 +48,12 @@ body {
 
   .container {
     width: 100%;
+
     .components-wrapper {
       height: calc(100vh - 51px);
+      width: 50%;
       display: flex;
+      margin: auto;
       position: relative;
       z-index: 0;
     }

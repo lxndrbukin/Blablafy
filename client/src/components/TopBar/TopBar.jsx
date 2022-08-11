@@ -77,6 +77,7 @@ class TopBar extends React.Component {
       <div className='top-bar_wrapper'>
         <div className='top-bar'>
           <TopBarLogo />
+          {/* <TopBarButtons /> */}
           <div className='top-bar_search'>
             <div className='top-bar_search-input-wrapper'>
               <input
@@ -109,7 +110,6 @@ class TopBar extends React.Component {
               {this.showResult()}
             </div>
           </div>
-          <TopBarButtons />
           <TopBarUser />
         </div>
       </div>

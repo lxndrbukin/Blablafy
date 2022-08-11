@@ -2,87 +2,12 @@
 
 .side-nav {
   height: 100vh;
-  width: 100px;
   display: flex;
   flex-direction: column;
   border-right: 1px solid $border-color;
 
-  .side-nav_logo {
-    margin: 10px auto 0 auto;
-    padding: 15px;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    z-index: 1;
-    border-radius: 15px;
-    background-image: $main-gradient;
-    text-decoration: none;
-
-    &:hover {
-      .eye:nth-of-type(2) {
-        animation-name: wink;
-        animation-duration: 1s;
-      }
-    }
-
-    i {
-      color: #fff;
-      font-size: 25px;
-      z-index: 1;
-      position: relative;
-
-      .logo_face {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-
-        .face_eyes {
-          margin: auto;
-          display: flex;
-          justify-content: space-around;
-
-          .eye {
-            background-color: #000;
-            height: 6px;
-            width: 3px;
-            margin: 4px;
-          }
-        }
-
-        .face_smile {
-          width: 8px;
-          height: 2px;
-          background-color: #000;
-          margin: auto;
-          position: relative;
-
-          &:before {
-            content: '';
-            position: absolute;
-            height: 2px;
-            width: 2px;
-            background-color: #000;
-            left: -2px;
-            top: -1px;
-          }
-
-          &:after {
-            content: '';
-            position: absolute;
-            height: 2px;
-            width: 2px;
-            background-color: #000;
-            right: -2px;
-            top: -1px;
-          }
-        }
-      }
-    }
-  }
-
   .side-nav_buttons {
-    margin: auto;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -90,15 +15,22 @@
 
     .side-nav_button {
       color: $link-color;
-      width: 55px;
-      height: 55px;
+      width: 150px;
+      height: 30px;
       display: flex;
       margin: 5px;
-      font-size: 22px;
+      font-size: 18px;
       text-decoration: none;
 
+      span {
+        font-size: 14px;
+        margin: auto 0;
+        color: #fff;
+      }
+
       i {
-        margin: auto;
+        padding: 6px;
+        width: 25px;
       }
 
       &:hover {
@@ -108,8 +40,8 @@
 
     .active-button {
       color: $active-color;
-      background-color: $hover-color;
-      border-radius: 15px;
+      background-color: $panel-color;
+      border-radius: 5px;
     }
   }
 
@@ -126,10 +58,12 @@
     height: 6px;
     margin: 4px;
   }
+
   50% {
     height: 2px;
     margin-top: 6px;
   }
+
   100% {
     height: 6px;
     margin: 4px;

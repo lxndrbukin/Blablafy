@@ -26,6 +26,7 @@ class App extends React.Component {
           <div className='container'>
             <TopBar />
             <div className='components-wrapper'>
+              <SideNav />
               <Switch>
                 <Route path='/' exact component={Homepage} />
                 <Route path='/chats' exact component={Chats} />

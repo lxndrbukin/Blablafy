@@ -8,7 +8,7 @@
 
   .top-bar {
     height: 50px;
-    width: 60%;
+    width: 50%;
     display: flex;
     flex-direction: row;
     margin: auto;
@@ -116,33 +116,61 @@
 
       .active-button {
         color: $active-color;
-        background-color: $hover-color;
         border-radius: 10px;
       }
     }
 
     .top-bar_user-profile-wrapper {
-      width: fit-content;
-      min-width: 105px;
+      width: 70px;
       display: flex;
-      height: fit-content;
+      justify-content: space-between;
+      height: 50px;
 
       .top-bar_user-profile-container {
-        width: fit-content;
-        height: fit-content;
         margin: auto;
         position: relative;
+        width: 100%;
 
         .top-bar_user-profile {
           display: flex;
-          justify-content: center;
+          width: 100%;
+          height: 50px;
+
+          &:hover {
+            background-color: $hover-color;
+            cursor: pointer;
+          }
+
+          &.active {
+            background-color: $hover-color;
+          }
 
           .top-bar_user-profile_avatar {
             height: 35px;
             width: 35px;
             background-size: cover;
             border-radius: 50%;
-            margin: auto;
+            margin: auto 8px;
+          }
+
+          .top-bar_user-profile-arrow {
+            height: 1px;
+            width: 6px;
+            background-color: #fff;
+            position: relative;
+            transform: rotate(45deg);
+            margin: auto 0;
+
+            &:after {
+              content: '';
+              position: absolute;
+              height: 1px;
+              width: 6px;
+              background-color: #fff;
+              transform: rotate(90deg);
+              left: 3px;
+              top: -3px;
+            }
           }
 
           .top-bar_user-profile_details {
@@ -156,40 +184,94 @@
         }
 
         .top-bar_user-profile-menu {
-          background-color: $border-color;
+          background-color: $panel-color;
+          border: 1px solid $border-color;
           position: absolute;
-          padding: 10px;
-          margin-top: 4px;
+          padding: 10px 0;
           z-index: 3;
-          width: 75px;
+          width: 250px;
           height: fit-content;
-
-          &:before {
-            content: '';
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            background-color: $border-color;
-            top: -8px;
-            left: 22px;
-            transform: rotate(45deg);
-          }
+          right: 0;
+          box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.3);
 
           .top-bar_user-profile-menu_buttons {
             display: flex;
             flex-direction: column;
             height: fit-content;
 
-            .profile-button {
-              margin: 5px;
+            .user-profile-link {
+              background-color: $panel-color-two;
+              padding: 10px;
+              display: flex;
 
-              button {
-                width: 100%;
-                background-color: $link-color;
-                border: none;
-                color: #fff;
-                padding: 5px;
-                cursor: pointer;
+              &:hover {
+                background-color: $hover-color;
+
+                .user-profile-menu_arrow {
+                  margin-right: 0;
+                  transition: margin-right .3s;
+                }
+              }
+
+              .user-profile-menu_info {
+                display: flex;
+
+                .user-profile-menu_avatar {
+                  width: 40px;
+                  height: 40px;
+                  background-size: cover;
+                  border-radius: 50%;
+                }
+
+                .user-profile-menu_name {
+                  margin: auto 0;
+                  padding: 10px;
+                }
+              }
+
+              .user-profile-menu_arrow {
+                height: 2px;
+                width: 8px;
+                background-color: #fff;
+                margin: auto 0 auto auto;
+                transform: rotate(45deg);
+                position: relative;
+                margin-right: 3px;
+                transition: margin-right .3s;
+
+                &:after {
+                  content: '';
+                  position: absolute;
+                  height: 2px;
+                  width: 8px;
+                  background-color: #fff;
+                  transform: rotate(-90deg);
+                  top: 3px;
+                  left: 3px;
+                }
+              }
+            }
+
+            .user-profile-menu-button {
+              width: calc(100% - 20px);
+              border: none;
+              color: #fff;
+              padding: 5px 10px;
+              cursor: pointer;
+
+              span {
+                font-size: 14px;
+                margin: auto;
+              }
+
+              i {
+                width: 25px;
+                color: $link-color;
+                font-size: 18px;
+              }
+
+              &:hover {
+                background-color: $hover-color;
               }
             }
           }
@@ -199,7 +281,7 @@
 
     .top-bar_search {
       width: fit-content;
-      margin: auto 25px;
+      margin: auto;
       position: relative;
 
       .top-bar_search-input-wrapper {
@@ -210,6 +292,7 @@
           height: 30px;
           padding-left: 30px;
           border: 0;
+          border-radius: 5px;
           background-color: rgba(81, 75, 101, 0.3);
           font-size: 14px;
 
@@ -228,11 +311,14 @@
 
       .top-bar_search-box {
         position: absolute;
-        background-color: $border-color;
+        background-color: $panel-color;
         padding: 10px;
+        margin-top: 9px;
+        border: 1px solid $border-color;
         width: calc(100% - 20px);
         height: fit-content;
         z-index: 2;
+        box-shadow: $box-shadow;
 
         .top-bar_search-result {
           display: flex;

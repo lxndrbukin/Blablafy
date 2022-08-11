@@ -5,14 +5,25 @@ import { fetchCurrentUser, logoutUser } from '../../../actions';
 import TopBarUserMenu from './TopBarUserMenu';
 
 class TopBarUser extends React.Component {
-  state = {
-    user: {},
-    showMenu: false,
+  constructor(props) {
+    super(props);
+    this.box = React.createRef();
+    this.state = {
+      user: {},
+      showMenu: false,
+    };
+  }
+
+  handleOutsideClick = (event) => {
+    if (this.box && !this.box.current.contains(event.target)) {
+      this.setState({ showMenu: false });
+    }
   };
 
   componentDidMount = () => {
     this.props.fetchCurrentUser();
     this.setState({ user: this.props.currentUser });
+    document.addEventListener('click', this.handleOutsideClick);
   };
 
   auth = () => {
@@ -36,26 +47,19 @@ class TopBarUser extends React.Component {
     );
   };
 
-  // const userDetails = () => {
-  //   if (currentUser) {
-  //     <div className='top-bar_user-profile_details'>
-  //       <div className='top-bar_user-profile_name'>{currentUser.username}</div>
-  //       <div className='top-bar_user-profile_status'>Status</div>
-  //     </div>;
-  //   }
-  // };
-
   miniProfile = () => {
     const { currentUser } = this.props;
     const { showMenu } = this.state;
     return (
-      <div className='top-bar_user-profile-wrapper'>
-        <div
-          className='top-bar_user-profile-container'
-          onMouseOver={() => this.setState({ showMenu: true })}
-          onMouseOut={() => this.setState({ showMenu: false })}
-        >
-          <div className='top-bar_user-profile'>
+      <div
+        className='top-bar_user-profile-wrapper'
+        onClick={() => this.setState({ showMenu: !showMenu })}
+      >
+        <div className='top-bar_user-profile-container'>
+          <div
+            ref={this.box}
+            className={`top-bar_user-profile ${showMenu ? 'active' : ''}`}
+          >
             <div
               className='top-bar_user-profile_avatar'
               style={{
@@ -63,10 +67,15 @@ class TopBarUser extends React.Component {
                   "url('https://www.savoric.com/wp-content/uploads/2018/03/profil-pic_dummy.png')",
               }}
             ></div>
+            <div className='top-bar_user-profile-arrow'></div>
           </div>
-          <TopBarUserMenu showMenu={showMenu} userId={currentUser.userId} />
+          <TopBarUserMenu
+            username={currentUser.username}
+            showMenu={showMenu}
+            setState={(state) => this.setState({ showMenu: state })}
+            userId={currentUser.userId}
+          />
         </div>
-        {this.auth()}
       </div>
     );
   };
