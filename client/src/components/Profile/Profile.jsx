@@ -28,19 +28,6 @@ class Profile extends React.Component {
     });
   }
 
-  buttons() {
-    const { currentUser, match } = this.props;
-    if (
-      (currentUser && currentUser.userId !== parseInt(match.params.id)) ||
-      currentUser === ''
-    ) {
-      return (
-        <button onClick={() => this.friendRequest()}>Add to Friends</button>
-      );
-    }
-    return;
-  }
-
   showDetails() {
     const { currentUser, match, user } = this.props;
     if (currentUser && currentUser.userId === parseInt(match.params.id)) {
@@ -70,12 +57,7 @@ class Profile extends React.Component {
   }
 
   render() {
-    return (
-      <div className='profile'>
-        {this.showDetails()}
-        {this.buttons()}
-      </div>
-    );
+    return <div className='profile'>{this.showDetails()}</div>;
   }
 }
 

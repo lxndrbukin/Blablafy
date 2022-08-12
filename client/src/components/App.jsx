@@ -23,10 +23,10 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <div className='app-wrapper dark'>
-          <div className='container'>
-            <TopBar />
-            <div className='components-wrapper'>
-              <SideNav />
+          <TopBar />
+          <div className='components-wrapper'>
+            <SideNav />
+            <div className='container'>
               <Switch>
                 <Route path='/' exact component={Homepage} />
                 <Route path='/chats' exact component={Chats} />

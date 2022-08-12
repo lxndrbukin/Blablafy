@@ -1,27 +1,56 @@
 @import '../assets//variables.scss';
 
 .profile {
-  width: 50%;
+  width: 100%;
   margin: 0 auto;
-  padding: 20px;
 
-  .profile-details {
+  .profile-info {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    width: 100%;
 
-    .profile-nickname {
+    .profile-info_left-column {
       width: fit-content;
-      margin: auto;
+      margin: 0 5px 0 0;
+
+      .profile-info_avatar {
+        width: fit-content;
+
+        img {
+          width: 200px;
+          height: 200px;
+        }
+      }
+
+      .profile-info_buttons {
+        display: flex;
+        flex-direction: column;
+
+        .profile-info_button {
+          background-color: $button-background;
+          border: none;
+          border-radius: 5px;
+          padding: 7px 10px;
+          margin: 3px 0;
+
+          &:hover {
+            background-color: $link-color;
+            cursor: pointer;
+          }
+        }
+      }
     }
 
-    .profile-details_avatar {
-      padding: 10px;
-      margin: auto;
+    .profile-info_right-column {
+      width: 100%;
+      margin: 0 0 0 5px;
 
-      img {
-        width: 200px;
-        height: 200px;
+      .profile-info_name {
+        font-size: 20px;
+      }
+
+      .profile-info_status {
+        font-size: 13px;
+        padding: 5px;
       }
     }
 
@@ -44,5 +73,29 @@
         }
       }
     }
+  }
+}
+
+.profile-info_box {
+  padding: 10px;
+  background-color: $panel-color;
+  border: 1px solid $border-color;
+  border-radius: 5px;
+  margin-top: 10px;
+
+  .profile-info_box-header {
+    width: fit-content;
+    font-size: 14px;
+
+    .profile-info_box-header-name {}
+
+    .profile-info_box-header-num {
+      padding: 0 5px;
+      color: $link-color;
+    }
+  }
+
+  .profile-info_box-line {
+    border-bottom: 1px solid $border-color-two;
   }
 }
