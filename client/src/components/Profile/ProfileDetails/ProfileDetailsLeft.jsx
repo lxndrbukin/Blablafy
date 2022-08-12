@@ -1,6 +1,46 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
-const ProfileDetailsLeft = ({ username, friends }) => {
+const ProfileDetailsLeft = ({
+  username,
+  friends,
+  friendRequests,
+  sentRequests,
+  id,
+  currentUser,
+}) => {
+  const showEditButton = () => {
+    if (currentUser.userId === parseInt(id)) {
+      return (
+        <NavLink to={`/profile/${id}/edit`}>
+          <button className='profile-info_button'>Edit Profile</button>
+        </NavLink>
+      );
+    }
+    return;
+  };
+
+  const showAddFriendButton = () => {
+    if (
+      currentUser &&
+      currentUser.userId !== parseInt(id) &&
+      !sentRequests.map((request) => request.username).includes(username)
+    ) {
+      console.log(
+        sentRequests.map((request) => request.username).includes(username)
+      );
+      return <button className='profile-info_button'>Add Friend</button>;
+    } else if (!currentUser) {
+      return;
+    } else if (
+      sentRequests.map((request) => request.username).includes(username) &&
+      currentUser.userId !== parseInt(id)
+    ) {
+      return <button className='profile-info_button'>Friend</button>;
+    }
+  };
+
   return (
     <div className='profile-info_left-column'>
       <div className='profile-info_box'>
@@ -11,8 +51,8 @@ const ProfileDetailsLeft = ({ username, friends }) => {
           />
         </div>
         <div className='profile-info_buttons'>
-          <button className='profile-info_button'>Edit Profile</button>
-          <button className='profile-info_button'>Add Friend</button>
+          {showEditButton()}
+          {showAddFriendButton()}
         </div>
       </div>
       <div className='profile-info_box'>
@@ -26,4 +66,10 @@ const ProfileDetailsLeft = ({ username, friends }) => {
   );
 };
 
-export default ProfileDetailsLeft;
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.currentUser,
+  };
+};
+
+export default connect(mapStateToProps)(ProfileDetailsLeft);

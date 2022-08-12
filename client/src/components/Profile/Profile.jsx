@@ -37,7 +37,7 @@ class Profile extends React.Component {
           friends={currentUser ? currentUser.friends : []}
           friendRequests={currentUser ? currentUser.friendRequests : []}
           sentRequests={currentUser ? currentUser.sentRequests : []}
-          pageId={match.params.id}
+          id={match.params.id}
         />
       );
     } else if (
@@ -50,7 +50,7 @@ class Profile extends React.Component {
           friends={user ? user.friends : []}
           friendRequests={user ? user.friendRequests : []}
           sentRequests={user ? user.sentRequests : []}
-          pageId={match.params.id}
+          id={match.params.id}
         />
       );
     }

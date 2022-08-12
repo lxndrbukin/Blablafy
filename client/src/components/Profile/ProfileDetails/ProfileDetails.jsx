@@ -7,11 +7,23 @@ const ProfileDetails = ({
   friends,
   friendRequests,
   sentRequests,
+  id,
 }) => {
   return (
     <div className='profile-info'>
-      <ProfileDetailsLeft username={username} friends={friends} />
-      <ProfileDetailsRight username={username} />
+      <ProfileDetailsLeft
+        username={username}
+        friends={friends}
+        id={id}
+        friendRequests={friendRequests}
+        sentRequests={sentRequests}
+      />
+      <ProfileDetailsRight
+        username={username}
+        friends={friends}
+        friendRequests={friendRequests}
+        sentRequests={sentRequests}
+      />
     </div>
   );
 };

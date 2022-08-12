@@ -31,6 +31,7 @@
           border-radius: 5px;
           padding: 7px 10px;
           margin: 3px 0;
+          width: 100%;
 
           &:hover {
             background-color: $link-color;
@@ -52,24 +53,34 @@
         font-size: 13px;
         padding: 5px;
       }
-    }
 
-    .profile-details_info {
-      display: flex;
+      .profile-info_details {
+        padding: 10px 0;
 
-      .profile-data {
-        display: flex;
-        flex-direction: column;
-        margin: auto;
+        .profile-info_details-line {
+          display: flex;
 
-        .profile-data-header {
-          font-weight: bold;
-          font-size: 20px;
+          .profile-info_details-line-name {
+            width: 200px;
+          }
         }
 
-        .profile-data-info {
-          font-size: 20px;
-          margin: auto;
+        .profile-info_details-numbers {
+          display: flex;
+          justify-content: center;
+
+          .profile-info_details-number {
+            display: flex;
+            flex-direction: column;
+            padding: 0 10px;
+
+            .profile-info_details-num {
+              width: fit-content;
+              margin: auto;
+              font-size: 25px;
+              color: $link-color;
+            }
+          }
         }
       }
     }
@@ -82,10 +93,10 @@
   border: 1px solid $border-color;
   border-radius: 5px;
   margin-top: 10px;
+  font-size: 14px;
 
   .profile-info_box-header {
     width: fit-content;
-    font-size: 14px;
 
     .profile-info_box-header-name {}
 

@@ -34,13 +34,13 @@
 
       &:hover {
         color: $active-color;
+        background-color: $panel-color;
+        border-radius: 5px;
       }
     }
 
     .active-button {
       color: $active-color;
-      background-color: $panel-color;
-      border-radius: 5px;
     }
   }
 
