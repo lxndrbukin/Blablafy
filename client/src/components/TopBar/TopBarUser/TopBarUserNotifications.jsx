@@ -52,7 +52,7 @@ class TopBarUserNotifications extends React.Component {
     return (
       <div className='top-bar_notifications' ref={this.box}>
         <div
-          className='top-bar_notifications-icon'
+          className={`top-bar_notifications-icon ${showMenu ? 'active' : ''}`}
           onClick={() => this.setState({ showMenu: !showMenu })}
         >
           <i className='fas fa-bell'></i>
