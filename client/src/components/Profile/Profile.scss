@@ -37,6 +37,13 @@
             background-color: $link-color;
             cursor: pointer;
           }
+
+          &.disabled {
+
+            &:hover {
+              background-color: $button-background;
+            }
+          }
         }
       }
     }

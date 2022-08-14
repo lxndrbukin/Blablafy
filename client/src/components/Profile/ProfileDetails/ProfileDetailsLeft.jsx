@@ -22,26 +22,22 @@ const ProfileDetailsLeft = ({
   };
 
   const showAddFriendButton = () => {
-    if (
-      currentUser &&
-      currentUser.userId !== parseInt(id) &&
-      !sentRequests.map((request) => request.username).includes(username)
-    ) {
-      console.log(id);
-      return <button className='profile-info_button'>Add Friend</button>;
-    } else if (!currentUser) {
-      return;
-    } else if (
-      sentRequests.map((request) => request.username).includes(username) &&
-      currentUser.userId !== parseInt(id)
-    ) {
-      return <button className='profile-info_button'>Friend</button>;
+    if (currentUser.sentRequests) {
+      for (let i = 0; i < currentUser.sentRequests.length; i++) {
+        if (
+          currentUser.sentRequests[i].userId === parseInt(id) &&
+          currentUser.sentRequests[i].username !== currentUser.username
+        ) {
+          return <button className='profile-info_button'>Request Sent</button>;
+        } else if (
+          currentUser.sentRequests[i].userId !== parseInt(id) &&
+          currentUser.sentRequests[i].username !== username &&
+          username !== currentUser.username
+        ) {
+          return <button className='profile-info_button'>Add Friend</button>;
+        }
+      }
     }
-    // return sentRequests.map((request) => {
-    //   if (currentUser.userId !== parseInt(id)) {
-    //     return <button className='profile-info_button'>Friend</button>;
-    //   }
-    // });
   };
 
   return (
