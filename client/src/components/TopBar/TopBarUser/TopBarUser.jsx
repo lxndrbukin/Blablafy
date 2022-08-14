@@ -9,7 +9,6 @@ class TopBarUser extends React.Component {
     super(props);
     this.box = React.createRef();
     this.state = {
-      user: {},
       showMenu: false,
     };
   }

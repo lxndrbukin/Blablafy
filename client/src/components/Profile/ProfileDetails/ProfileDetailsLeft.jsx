@@ -27,9 +27,7 @@ const ProfileDetailsLeft = ({
       currentUser.userId !== parseInt(id) &&
       !sentRequests.map((request) => request.username).includes(username)
     ) {
-      console.log(
-        sentRequests.map((request) => request.username).includes(username)
-      );
+      console.log(id);
       return <button className='profile-info_button'>Add Friend</button>;
     } else if (!currentUser) {
       return;
@@ -39,6 +37,11 @@ const ProfileDetailsLeft = ({
     ) {
       return <button className='profile-info_button'>Friend</button>;
     }
+    // return sentRequests.map((request) => {
+    //   if (currentUser.userId !== parseInt(id)) {
+    //     return <button className='profile-info_button'>Friend</button>;
+    //   }
+    // });
   };
 
   return (
