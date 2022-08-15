@@ -187,3 +187,15 @@ body {
     border-bottom: 3px solid $main-color;
   }
 }
+
+@media screen and (min-width: 1280px) and (max-width: 1440px) {
+  .components-wrapper {
+    width: 70% !important;
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .components-wrapper {
+    width: 100% !important;
+  }
+}

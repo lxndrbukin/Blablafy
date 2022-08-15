@@ -451,3 +451,23 @@
   padding: 10px;
   cursor: pointer;
 }
+
+@media screen and (min-width: 1280px) and (max-width: 1440px) {
+  .top-bar_wrapper {
+    .top-bar {
+      width: 70%;
+    }
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .top-bar_wrapper {
+    .top-bar {
+      width: 100%;
+
+      .top-bar_logo {
+        margin: auto auto auto 25px;
+      }
+    }
+  }
+}

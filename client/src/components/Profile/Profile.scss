@@ -117,3 +117,21 @@
     border-bottom: 1px solid $border-color-two;
   }
 }
+
+@media screen and (max-width: 540px) {
+  .profile-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .profile-info_left-column {
+    width: 100% !important;
+    margin-right: 0 !important;
+  }
+
+  .profile-info_right-column {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+}
