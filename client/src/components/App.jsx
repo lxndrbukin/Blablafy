@@ -8,6 +8,7 @@ import Homepage from './Homepage/Homepage';
 import Chats from './Chats/Chats';
 import AuthPage from './Auth/AuthPage';
 import Profile from './Profile/Profile';
+import Users from './Users/Users';
 
 class App extends React.Component {
   renderAuthPage() {
@@ -31,6 +32,7 @@ class App extends React.Component {
                 <Route path='/' exact component={Homepage} />
                 <Route path='/chats' exact component={Chats} />
                 <Route path='/auth' exact component={AuthPage} />
+                <Route path='/users' exact component={Users} />
                 <Route path='/profile/:id' exact component={Profile} />
               </Switch>
             </div>

@@ -1,0 +1,75 @@
+@import '../assets/variables.scss';
+
+.users {
+  gap: 15px;
+  display: inline-grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  width: 100%;
+  padding: 10px 0;
+
+  .user {
+    position: relative;
+    width: fit-content;
+    margin: auto;
+    background-color: $panel-color;
+    border: 1px solid $border-color;
+    border-radius: 5px;
+
+    .user-id {
+      position: absolute;
+      right: 0;
+    }
+
+    .user-info {
+      padding: 10px;
+
+      .user-info_top {
+        padding: 5px;
+
+        .user-avatar {
+          width: 100px;
+          height: 100px;
+          background-size: cover;
+          border-radius: 50%;
+          margin: auto;
+        }
+
+        .user-username {
+          width: fit-content;
+          margin: auto;
+        }
+      }
+
+      .user-info_bottom {
+        display: flex;
+      }
+
+      .user_buttons {
+          
+        .user_button {
+          background-color: $button-background;
+          border: none;
+          border-radius: 5px;
+          padding: 7px 10px;
+          margin: 3px;
+          width: 100%;
+
+          &:hover {
+            background-color: $link-color;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+
+.info {
+  padding: 5px;
+
+  .info-num {
+    width: fit-content;
+    margin: auto;
+    font-size: 20px;
+  }
+}

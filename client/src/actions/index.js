@@ -11,6 +11,11 @@ export const createUser = (formValues) => async (dispatch) => {
   dispatch({ type: 'CREATE_USER', payload: res.data });
 };
 
+export const deleteUser = (userId) => async (dispatch) => {
+  const res = await axios.post('/api/users', { userId });
+  dispatch({ type: 'DELETE_USER', payload: res.data });
+};
+
 export const loginUser = (formValues) => async (dispatch) => {
   const res = await axios.post('/auth', { ...formValues });
   dispatch({ type: 'LOGIN_USER', payload: res.data });
@@ -41,7 +46,8 @@ export const sendFriendRequest = (_id, user) => async (dispatch) => {
   dispatch({ type: 'SEND_REQUEST', payload: res.data });
 };
 
-export const receiveFriendRequest = (userId, currentUser) => async (dispatch) => {
-  const res = await axios.put('/api/users', {userId, currentUser});
-  dispatch({ type: 'RECEIVE_REQUEST', payload: res.data });
-}
+export const receiveFriendRequest =
+  (userId, currentUser) => async (dispatch) => {
+    const res = await axios.put('/api/users', { userId, currentUser });
+    dispatch({ type: 'RECEIVE_REQUEST', payload: res.data });
+  };

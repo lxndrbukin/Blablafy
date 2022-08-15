@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { sendFriendRequest, receiveFriendRequest } from '../../../actions';
 
 const ProfileDetailsLeft = ({
   username,
@@ -9,6 +10,8 @@ const ProfileDetailsLeft = ({
   sentRequests,
   id,
   currentUser,
+  sendFriendRequest,
+  receiveFriendRequest,
 }) => {
   const showEditButton = () => {
     if (currentUser.userId === parseInt(id)) {
@@ -23,19 +26,59 @@ const ProfileDetailsLeft = ({
 
   const showAddFriendButton = () => {
     if (currentUser.sentRequests) {
-      for (let i = 0; i < currentUser.sentRequests.length; i++) {
-        if (
-          currentUser.sentRequests[i].userId === parseInt(id) &&
-          currentUser.sentRequests[i].username !== currentUser.username
-        ) {
-          return <button className='profile-info_button'>Request Sent</button>;
-        } else if (
-          currentUser.sentRequests[i].userId !== parseInt(id) &&
-          currentUser.sentRequests[i].username !== username &&
-          username !== currentUser.username
-        ) {
-          return <button className='profile-info_button'>Add Friend</button>;
+      // for (let i = 0; i < currentUser.sentRequests.length; i++) {
+      //   if (currentUser.sentRequests[i].userId === parseInt(id)) {
+      //     return <button className='profile-info_button'>Request Sent</button>;
+      //   } else if (currentUser.sentRequests[i].userId !== currentUser.userId) {
+      //     if (currentUser.sentRequests.indexOf()) {
+
+      //     }
+      //     return (
+      //       <button
+      //         onClick={() => {
+      //           sendFriendRequest(currentUser._id, {
+      //             userId: parseInt(id),
+      //             username: username,
+      //           });
+      //           receiveFriendRequest(id, {
+      //             userId: currentUser.userId,
+      //             username: currentUser.username,
+      //           });
+      //         }}
+      //         className='profile-info_button'
+      //       >
+      //         Add Friend
+      //       </button>
+      //     );
+      //   }
+      // }
+
+      const checkUser = currentUser.sentRequests.some((request) => {
+        if (request.userId === parseInt(id)) {
+          return true;
         }
+      });
+
+      if (checkUser) {
+        return <button className='profile-info_button'>Request Sent</button>;
+      } else if (!checkUser && username !== currentUser.username) {
+        return (
+          <button
+            onClick={() => {
+              sendFriendRequest(currentUser._id, {
+                userId: parseInt(id),
+                username: username,
+              });
+              receiveFriendRequest(id, {
+                userId: currentUser.userId,
+                username: currentUser.username,
+              });
+            }}
+            className='profile-info_button'
+          >
+            Add Friend
+          </button>
+        );
       }
     }
   };
@@ -71,4 +114,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(ProfileDetailsLeft);
+export default connect(mapStateToProps, {
+  sendFriendRequest,
+  receiveFriendRequest,
+})(ProfileDetailsLeft);

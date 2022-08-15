@@ -34,4 +34,11 @@ module.exports = (app) => {
       res.send(users);
     }).clone();
   });
+
+  app.post('/api/users', async (req, res) => {
+    await User.findOneAndRemove({ userId: req.body.userId }).clone();
+    await User.find({}, (err, users) => {
+      res.send(users);
+    }).clone();
+  });
 };
