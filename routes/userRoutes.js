@@ -7,16 +7,32 @@ module.exports = (app) => {
   });
 
   app.put('/api/current_user', async (req, res) => {
-    const user = await User.findOneAndUpdate(
-      { _id: req.body._id },
-      {
-        $push: { sentRequests: req.body.user },
-      },
-      { new: true, safe: true, upsert: true }
-    ).clone();
-    user.save();
-    res.send(user);
+    if (req.body.request === '$push') {
+      const user = await User.findOneAndUpdate(
+        { _id: req.body._id },
+        { [req.body.request]: { sentRequests: req.body.user } },
+        { new: true, safe: true, upsert: true }
+      ).clone();
+      user.save();
+      res.send(user);
+    } else if (req.body.request === '$pull') {
+      const user = await User.findOneAndUpdate(
+        { _id: req.body._id },
+        { [req.body.request]: { sentRequests: req.body.user } },
+        { new: true, safe: true, upsert: true }
+      ).clone();
+      user.save();
+      res.send(user);
+    }
   });
+
+  // app.post('/api/current_user', async (req, res) => {
+  //   await User.findOneAndUpdate(
+  //     { _id: req.body._id },
+  //     { $pull: { sentRequests: req.body.user } },
+  //     { new: true, safe: true, upsert: true }
+  //   ).clone();
+  // });
 
   app.get('/api/users', async (req, res) => {
     await User.find({}, (err, users) => {
@@ -25,17 +41,39 @@ module.exports = (app) => {
   });
 
   app.put('/api/users', async (req, res) => {
-    const user = await User.findOneAndUpdate(
-      { userId: req.body.userId },
-      { $push: { friendRequests: req.body.currentUser } }
-    ).clone();
-    user.save();
-    await User.find({}, (err, users) => {
-      res.send(users);
-    }).clone();
+    if (req.body.request === '$push') {
+      const user = await User.findOneAndUpdate(
+        { userId: req.body.userId },
+        { [req.body.request]: { friendRequests: req.body.currentUser } }
+      ).clone();
+      user.save();
+      await User.find({}, (err, users) => {
+        res.send(users);
+      }).clone();
+    } else if (req.body.request === '$pull') {
+      const user = await User.findOneAndUpdate(
+        { userId: req.body.userId },
+        { [req.body.request]: { friendRequests: req.body.currentUser } }
+      ).clone();
+      user.save();
+      await User.find({}, (err, users) => {
+        res.send(users);
+      }).clone();
+    }
   });
 
-  app.post('/api/users', async (req, res) => {
+  // app.post('/api/users', async (req, res) => {
+  //   const user = await User.findOneAndUpdate(
+  //     { userId: req.body.userId },
+  //     { $pull: { friendRequests: req.body.currentUser } }
+  //   ).clone();
+  //   user.save();
+  //   await User.find({}, (err, users) => {
+  //     res.send(users);
+  //   }).clone();
+  // });
+
+  app.post('/api/users/:id', async (req, res) => {
     await User.findOneAndRemove({ userId: req.body.userId }).clone();
     await User.find({}, (err, users) => {
       res.send(users);

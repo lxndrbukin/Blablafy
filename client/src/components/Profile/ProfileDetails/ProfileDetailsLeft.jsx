@@ -53,15 +53,15 @@ const ProfileDetailsLeft = ({
       //   }
       // }
 
-      const checkUser = currentUser.sentRequests.some((request) => {
+      const checkId = currentUser.sentRequests.some((request) => {
         if (request.userId === parseInt(id)) {
           return true;
         }
       });
 
-      if (checkUser) {
+      if (checkId) {
         return <button className='profile-info_button'>Request Sent</button>;
-      } else if (!checkUser && username !== currentUser.username) {
+      } else if (!checkId && username !== currentUser.username) {
         return (
           <button
             onClick={() => {

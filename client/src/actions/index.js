@@ -12,7 +12,7 @@ export const createUser = (formValues) => async (dispatch) => {
 };
 
 export const deleteUser = (userId) => async (dispatch) => {
-  const res = await axios.post('/api/users', { userId });
+  const res = await axios.post(`/api/users/${userId}`, { userId });
   dispatch({ type: 'DELETE_USER', payload: res.data });
 };
 
@@ -42,12 +42,39 @@ export const fetchUsers = () => async (dispatch) => {
 };
 
 export const sendFriendRequest = (_id, user) => async (dispatch) => {
-  const res = await axios.put('/api/current_user', { _id, user });
+  const res = await axios.put('/api/current_user', {
+    _id,
+    user,
+    request: '$push',
+  });
   dispatch({ type: 'SEND_REQUEST', payload: res.data });
 };
 
 export const receiveFriendRequest =
   (userId, currentUser) => async (dispatch) => {
-    const res = await axios.put('/api/users', { userId, currentUser });
+    const res = await axios.put(`/api/users`, {
+      userId,
+      currentUser,
+      request: '$push',
+    });
     dispatch({ type: 'RECEIVE_REQUEST', payload: res.data });
+  };
+
+export const removeSentRequest = (_id, user) => async (dispatch) => {
+  const res = await axios.post('/api/current_user', {
+    _id,
+    user,
+    request: '$pull',
+  });
+  dispatch({ type: 'REMOVE_SENT_REQUEST', payload: res.data });
+};
+
+export const removeFriendRequest =
+  (userId, currentUser) => async (dispatch) => {
+    const res = await axios.put(`/api/users`, {
+      userId,
+      currentUser,
+      request: '$pull',
+    });
+    dispatch({ type: 'REMOVE_FRIEND_REQUEST', payload: res.data });
   };

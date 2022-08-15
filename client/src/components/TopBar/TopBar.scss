@@ -437,6 +437,19 @@
               padding: 5px 0;
             }
           }
+
+          .accept {
+            height: 25px;
+            background-color: $button-background;
+            border: 0;
+            border-radius: 5px;
+            margin: auto;
+
+            &:hover {
+              background-color: $link-color;
+              cursor: pointer;
+            }
+          }
         }
       }
     }

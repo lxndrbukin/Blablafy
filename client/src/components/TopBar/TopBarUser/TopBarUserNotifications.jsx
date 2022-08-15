@@ -41,6 +41,7 @@ class TopBarUserNotifications extends React.Component {
                 Added you to their Friend List
               </div>
             </div>
+            <button className='accept'>Accept</button>
           </div>
         );
       });
