@@ -1,10 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-export const Input = ({ label, input, name, type, value, style }) => {
+export const Input = ({
+  label,
+  input,
+  name,
+  type,
+  value,
+  style,
+  errorStatus,
+  errorMessage,
+}) => {
   return (
     <div className='form-input' style={style}>
       <label>{label}</label>
-      <input type={type} name={name} value={value} {...input} />
+      <div className={errorStatus ? 'error' : ''}>
+        <input type={type} name={name} value={value} {...input} />
+      </div>
+      {errorStatus && errorMessage ? (
+        <div className='form-input_error'>{errorMessage}</div>
+      ) : (
+        ''
+      )}
     </div>
   );
 };

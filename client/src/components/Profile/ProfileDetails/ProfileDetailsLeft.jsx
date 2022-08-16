@@ -26,33 +26,6 @@ const ProfileDetailsLeft = ({
 
   const showAddFriendButton = () => {
     if (currentUser.sentRequests) {
-      // for (let i = 0; i < currentUser.sentRequests.length; i++) {
-      //   if (currentUser.sentRequests[i].userId === parseInt(id)) {
-      //     return <button className='profile-info_button'>Request Sent</button>;
-      //   } else if (currentUser.sentRequests[i].userId !== currentUser.userId) {
-      //     if (currentUser.sentRequests.indexOf()) {
-
-      //     }
-      //     return (
-      //       <button
-      //         onClick={() => {
-      //           sendFriendRequest(currentUser._id, {
-      //             userId: parseInt(id),
-      //             username: username,
-      //           });
-      //           receiveFriendRequest(id, {
-      //             userId: currentUser.userId,
-      //             username: currentUser.username,
-      //           });
-      //         }}
-      //         className='profile-info_button'
-      //       >
-      //         Add Friend
-      //       </button>
-      //     );
-      //   }
-      // }
-
       const checkId = currentUser.sentRequests.some((request) => {
         if (request.userId === parseInt(id)) {
           return true;
