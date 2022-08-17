@@ -17,7 +17,7 @@ export const deleteUser = (userId) => async (dispatch) => {
 };
 
 export const loginUser = (formValues) => async (dispatch) => {
-  const res = await axios.post('/auth', { ...formValues });
+  const res = await axios.post('/authorize', { ...formValues });
   dispatch({ type: 'LOGIN_USER', payload: res.data });
 };
 
@@ -41,11 +41,12 @@ export const fetchUsers = () => async (dispatch) => {
   dispatch({ type: 'FETCH_USERS', payload: res.data });
 };
 
-export const sendFriendRequest = (_id, user) => async (dispatch) => {
+export const sendFriendRequest = (userId, user) => async (dispatch) => {
   const res = await axios.put('/api/current_user', {
-    _id,
+    userId,
     user,
     request: '$push',
+    friend: false,
   });
   dispatch({ type: 'SEND_REQUEST', payload: res.data });
 };
@@ -56,25 +57,45 @@ export const receiveFriendRequest =
       userId,
       currentUser,
       request: '$push',
+      friend: false,
     });
     dispatch({ type: 'RECEIVE_REQUEST', payload: res.data });
   };
 
-export const removeSentRequest = (_id, user) => async (dispatch) => {
-  const res = await axios.post('/api/current_user', {
-    _id,
-    user,
+export const removeSentRequest = (userId, currentUser) => async (dispatch) => {
+  const res = await axios.put('/api/users', {
+    userId,
+    currentUser,
     request: '$pull',
   });
   dispatch({ type: 'REMOVE_SENT_REQUEST', payload: res.data });
 };
 
-export const removeFriendRequest =
-  (userId, currentUser) => async (dispatch) => {
-    const res = await axios.put(`/api/users`, {
-      userId,
-      currentUser,
-      request: '$pull',
-    });
-    dispatch({ type: 'REMOVE_FRIEND_REQUEST', payload: res.data });
-  };
+export const removeFriendRequest = (userId, user) => async (dispatch) => {
+  const res = await axios.put(`/api/current_user`, {
+    userId,
+    user,
+    request: '$pull',
+  });
+  dispatch({ type: 'REMOVE_FRIEND_REQUEST', payload: res.data });
+};
+
+export const addFriendToCurrentUser = (userId, user) => async (dispatch) => {
+  const res = await axios.put(`/api/current_user`, {
+    userId,
+    user,
+    request: '$push',
+    friend: true,
+  });
+  dispatch({ type: 'ADD_FRIEND_TO_CURRENT_USER', payload: res.data });
+};
+
+export const addFriendToUser = (userId, currentUser) => async (dispatch) => {
+  const res = await axios.put(`/api/users`, {
+    userId,
+    currentUser,
+    request: '$push',
+    friend: true,
+  });
+  dispatch({ type: 'ADD_FRIEND_TO_USER', payload: res.data });
+};

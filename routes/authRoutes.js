@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 const User = mongoose.model('users');
 
 module.exports = (app) => {
-  app.post('/auth', async (req, res) => {
+  app.post('/authorize', async (req, res) => {
     await User.findOne({ username: req.body.username }, (err, user) => {
       if (err) {
         console.log(err);
       } else {
-        passport.authenticate('local', { failureRedirect: '/login' })(
+        passport.authenticate('local', { failureRedirect: '/auth' })(
           req,
           res,
           () => {
@@ -31,7 +31,7 @@ module.exports = (app) => {
         if (err) {
           console.log(err);
         } else {
-          passport.authenticate('local', { failureRedirect: '/login' })(
+          passport.authenticate('local', { failureRedirect: '/auth' })(
             req,
             res,
             () => {

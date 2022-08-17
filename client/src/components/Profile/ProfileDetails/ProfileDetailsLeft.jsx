@@ -38,7 +38,7 @@ const ProfileDetailsLeft = ({
         return (
           <button
             onClick={() => {
-              sendFriendRequest(currentUser._id, {
+              sendFriendRequest(currentUser.userId, {
                 userId: parseInt(id),
                 username: username,
               });

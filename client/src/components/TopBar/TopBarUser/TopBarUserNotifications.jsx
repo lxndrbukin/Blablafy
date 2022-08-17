@@ -1,5 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {
+  removeFriendRequest,
+  removeSentRequest,
+  addFriendToUser,
+  addFriendToCurrentUser,
+} from '../../../actions';
 
 class TopBarUserNotifications extends React.Component {
   constructor(props) {
@@ -21,7 +27,13 @@ class TopBarUserNotifications extends React.Component {
   };
 
   notifications = () => {
-    const { currentUser } = this.props;
+    const {
+      currentUser,
+      removeFriendRequest,
+      removeSentRequest,
+      addFriendToCurrentUser,
+      addFriendToUser,
+    } = this.props;
     if (currentUser.friendRequests) {
       return currentUser.friendRequests.map((request, idx) => {
         return (
@@ -41,7 +53,27 @@ class TopBarUserNotifications extends React.Component {
                 Added you to their Friend List
               </div>
             </div>
-            <button className='accept'>Accept</button>
+            <button
+              onClick={() => {
+                removeFriendRequest(currentUser.userId, {
+                  userId: request.userId,
+                });
+                removeSentRequest(request.userId, {
+                  userId: currentUser.userId,
+                });
+                addFriendToCurrentUser(currentUser.userId, {
+                  userId: request.userId,
+                  username: request.username,
+                });
+                addFriendToUser(request.userId, {
+                  userId: currentUser.userId,
+                  username: currentUser.username,
+                });
+              }}
+              className='accept'
+            >
+              Accept
+            </button>
           </div>
         );
       });
@@ -82,4 +114,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(TopBarUserNotifications);
+export default connect(mapStateToProps, {
+  addFriendToCurrentUser,
+  addFriendToUser,
+  removeFriendRequest,
+  removeSentRequest,
+})(TopBarUserNotifications);

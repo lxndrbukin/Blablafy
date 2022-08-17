@@ -7,20 +7,29 @@ export const Input = ({
   type,
   value,
   style,
-  errorStatus,
+  errorUsernameStatus,
+  errorPasswordStatus,
   errorMessage,
 }) => {
+  const showErrorMessage = () => {
+    if (errorUsernameStatus && errorMessage) {
+      return <div className='form-input_error'>{errorMessage}</div>;
+    } else if (errorPasswordStatus && errorMessage) {
+      return <div className='form-input_error'>{errorMessage}</div>;
+    }
+  };
+
   return (
     <div className='form-input' style={style}>
       <label>{label}</label>
-      <div className={`input-container ${errorStatus ? 'error' : ''}`}>
+      <div
+        className={`input-container ${
+          errorUsernameStatus || errorPasswordStatus ? 'error' : ''
+        }`}
+      >
         <input type={type} name={name} value={value} {...input} />
       </div>
-      {errorStatus && errorMessage ? (
-        <div className='form-input_error'>{errorMessage}</div>
-      ) : (
-        ''
-      )}
+      {showErrorMessage()}
     </div>
   );
 };

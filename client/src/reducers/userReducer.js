@@ -10,6 +10,10 @@ export const userReducer = (state = {}, action) => {
       return state, action.payload;
     case 'SEND_REQUEST':
       return state, action.payload;
+    case 'REMOVE_FRIEND_REQUEST':
+      return state, action.payload;
+    case 'ADD_FRIEND_TO_CURRENT_USER':
+      return state, action.payload;
     default:
       return state;
   }

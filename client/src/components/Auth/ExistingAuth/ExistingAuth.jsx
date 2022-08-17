@@ -6,11 +6,26 @@ import { loginUser } from '../../../actions';
 
 class ExistingAuth extends React.Component {
   state = {
-    errorStatus: false,
+    errorUsernameStatus: false,
+    errorPasswordStatus: false,
   };
 
-  onSubmit = (e, formValues) => {
-    this.props.loginUser(formValues);
+  onSubmit = (formValues) => {
+    try {
+      if (!formValues.username) {
+        this.setState({ errorUsernameStatus: true });
+        throw Error('Invalid Username');
+      } else if (!formValues.password) {
+        this.setState({ errorPasswordStatus: true });
+        throw Error('Invalid Password');
+      } else {
+        this.setState({ errorUsernameStatus: false });
+        this.setState({ errorPasswordStatus: false });
+        this.props.loginUser(formValues);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   render() {
@@ -19,10 +34,10 @@ class ExistingAuth extends React.Component {
         <Field
           onBlur={(e) =>
             e.target.value === ''
-              ? this.setState({ errorStatus: true })
-              : this.setState({ errorStatus: false })
+              ? this.setState({ errorUsernameStatus: true })
+              : this.setState({ errorUsernameStatus: false })
           }
-          errorStatus={this.state.errorStatus}
+          errorUsernameStatus={this.state.errorUsernameStatus}
           errorMessage='Please enter a valid Username'
           component={Input}
           type='text'
@@ -30,6 +45,13 @@ class ExistingAuth extends React.Component {
           name='username'
         />
         <Field
+          onBlur={(e) =>
+            e.target.value === ''
+              ? this.setState({ errorPasswordStatus: true })
+              : this.setState({ errorPasswordStatus: false })
+          }
+          errorPasswordStatus={this.state.errorPasswordStatus}
+          errorMessage='Please enter a valid Password'
           component={Input}
           type='password'
           label='Password'
