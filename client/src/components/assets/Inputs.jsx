@@ -13,7 +13,7 @@ export const Input = ({
   return (
     <div className='form-input' style={style}>
       <label>{label}</label>
-      <div className={errorStatus ? 'error' : ''}>
+      <div className={`input-container ${errorStatus ? 'error' : ''}`}>
         <input type={type} name={name} value={value} {...input} />
       </div>
       {errorStatus && errorMessage ? (

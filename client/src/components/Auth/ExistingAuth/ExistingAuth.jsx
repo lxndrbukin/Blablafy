@@ -9,7 +9,7 @@ class ExistingAuth extends React.Component {
     errorStatus: false,
   };
 
-  onSubmit = (formValues) => {
+  onSubmit = (e, formValues) => {
     this.props.loginUser(formValues);
   };
 

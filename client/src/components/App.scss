@@ -145,26 +145,30 @@ body {
       padding: 0 5px;
     }
 
-    input {
-      width: 293px;
-      height: 35px;
-      font-size: 16px;
-      border: 0px;
-      border-left: 3px solid transparent;
-      transition: border-left 0.5s;
-      box-shadow: #000;
-      padding-left: 5px;
-      background-color: rgba(81, 75, 101, 0.3);
+    .input-container {
+      border: 2px solid transparent;
 
-      &:focus {
-        outline: none;
-        border-left: 3px solid $active-color;
+      input {
+        width: 293px;
+        height: 35px;
+        font-size: 16px;
+        border: 0px;
+        border-left: 3px solid transparent;
         transition: border-left 0.5s;
+        box-shadow: #000;
+        padding-left: 5px;
+        background-color: $input-color;
+
+        &:focus {
+          outline: none;
+          border-left: 3px solid $active-color;
+          transition: border-left 0.5s;
+        }
       }
     }
 
     .form-input_error {
-      padding: 5px 0;
+      padding: 10px 0;
     }
 
     .error {
@@ -182,6 +186,12 @@ body {
         left: 5px;
         transform: rotate(45deg);
         z-index: -1;
+      }
+
+      input {
+        &:focus {
+          border-left: 3px solid transparent;
+        }
       }
     }
   }
