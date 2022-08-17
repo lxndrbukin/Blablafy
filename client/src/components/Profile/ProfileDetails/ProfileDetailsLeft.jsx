@@ -6,13 +6,28 @@ import { sendFriendRequest, receiveFriendRequest } from '../../../actions';
 const ProfileDetailsLeft = ({
   username,
   friends,
-  friendRequests,
-  sentRequests,
   id,
   currentUser,
   sendFriendRequest,
   receiveFriendRequest,
 }) => {
+  const renderFriendsList = () => {
+    return friends.map((friend, idx) => {
+      return (
+        <div key={idx} className='profile-info_friend'>
+          <div
+            className='profile-info_friend-avatar'
+            style={{
+              backgroundImage:
+                "url('https://www.savoric.com/wp-content/uploads/2018/03/profil-pic_dummy.png')",
+            }}
+          ></div>
+          <span className='profile-info_friend-name'>{friend.username}</span>
+        </div>
+      );
+    });
+  };
+
   const showEditButton = () => {
     if (currentUser.userId === parseInt(id)) {
       return (
@@ -31,10 +46,18 @@ const ProfileDetailsLeft = ({
           return true;
         }
       });
-
+      const checkFriendId = currentUser.friends.some((friend) => {
+        if (friend.userId === parseInt(id)) {
+          return true;
+        }
+      });
       if (checkId) {
         return <button className='profile-info_button'>Request Sent</button>;
-      } else if (!checkId && username !== currentUser.username) {
+      } else if (
+        !checkId &&
+        username !== currentUser.username &&
+        !checkFriendId
+      ) {
         return (
           <button
             onClick={() => {
@@ -51,6 +74,10 @@ const ProfileDetailsLeft = ({
           >
             Add Friend
           </button>
+        );
+      } else if (checkFriendId && username !== currentUser.username) {
+        return (
+          <button className='profile-info_button disabled'>Friends</button>
         );
       }
     }
@@ -74,8 +101,8 @@ const ProfileDetailsLeft = ({
         <div className='profile-info_box-header'>
           <span className='profile-info_box-header-name'>Friends</span>
           <span className='profile-info_box-header-num'>{friends.length}</span>
-          <span></span>
         </div>
+        <div className='profile-info_friends'>{renderFriendsList()}</div>
       </div>
     </div>
   );

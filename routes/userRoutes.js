@@ -34,7 +34,9 @@ module.exports = (app) => {
   app.get('/api/users', async (req, res) => {
     await User.find({}, (err, users) => {
       res.send(users);
-    }).clone();
+    })
+      .select('-_id')
+      .clone();
   });
 
   app.put('/api/users', async (req, res) => {
