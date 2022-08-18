@@ -3,7 +3,11 @@ const User = mongoose.model('users');
 
 module.exports = (app) => {
   app.get('/api/current_user', async (req, res) => {
-    await res.send(req.user);
+    await User.findOne({ userId: req.user.userId }, (err, user) => {
+      res.send(user);
+    })
+      .select('-_id')
+      .clone();
   });
 
   app.put('/api/current_user', async (req, res) => {

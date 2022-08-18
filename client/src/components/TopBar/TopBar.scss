@@ -348,6 +348,7 @@
     .top-bar_notifications {
       margin: auto 20px;
       position: relative;
+      cursor: default;
 
       .top-bar_notifications-icon {
         display: flex;
@@ -450,6 +451,15 @@
               cursor: pointer;
             }
           }
+        }
+
+        .top-bar_no-notifications {
+          padding: 22px 0 21px 0;
+          width: fit-content;
+          height: fit-content;
+          margin: auto;
+          font-size: 14px;
+          color: $link-color;
         }
       }
     }

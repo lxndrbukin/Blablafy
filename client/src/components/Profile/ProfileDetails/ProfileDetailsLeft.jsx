@@ -14,16 +14,18 @@ const ProfileDetailsLeft = ({
   const renderFriendsList = () => {
     return friends.map((friend, idx) => {
       return (
-        <div key={idx} className='profile-info_friend'>
-          <div
-            className='profile-info_friend-avatar'
-            style={{
-              backgroundImage:
-                "url('https://www.savoric.com/wp-content/uploads/2018/03/profil-pic_dummy.png')",
-            }}
-          ></div>
-          <span className='profile-info_friend-name'>{friend.username}</span>
-        </div>
+        <NavLink key={idx} to={`/profile/${friend.userId}`}>
+          <div className='profile-info_friend'>
+            <div
+              className='profile-info_friend-avatar'
+              style={{
+                backgroundImage:
+                  "url('https://www.savoric.com/wp-content/uploads/2018/03/profil-pic_dummy.png')",
+              }}
+            ></div>
+            <span className='profile-info_friend-name'>{friend.username}</span>
+          </div>
+        </NavLink>
       );
     });
   };
@@ -77,7 +79,10 @@ const ProfileDetailsLeft = ({
         );
       } else if (checkFriendId && username !== currentUser.username) {
         return (
-          <button className='profile-info_button disabled'>Friends</button>
+          <button className='profile-info_button disabled'>
+            <i className='fas fa-check'></i>
+            <span>Friends</span>
+          </button>
         );
       }
     }
@@ -99,8 +104,12 @@ const ProfileDetailsLeft = ({
       </div>
       <div className='profile-info_box'>
         <div className='profile-info_box-header'>
-          <span className='profile-info_box-header-name'>Friends</span>
-          <span className='profile-info_box-header-num'>{friends.length}</span>
+          <NavLink to={`/profile/${id}/friends`}>
+            <span className='profile-info_box-header-name'>Friends</span>
+            <span className='profile-info_box-header-num'>
+              {friends.length}
+            </span>
+          </NavLink>
         </div>
         <div className='profile-info_friends'>{renderFriendsList()}</div>
       </div>

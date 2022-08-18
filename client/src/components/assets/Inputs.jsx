@@ -10,6 +10,8 @@ export const Input = ({
   errorUsernameStatus,
   errorPasswordStatus,
   errorMessage,
+  disabled,
+  transparent,
 }) => {
   const showErrorMessage = () => {
     if (errorUsernameStatus && errorMessage) {
@@ -25,7 +27,7 @@ export const Input = ({
       <div
         className={`input-container ${
           errorUsernameStatus || errorPasswordStatus ? 'error' : ''
-        }`}
+        } ${disabled ? 'disabled' : ''} ${transparent ? 'transparent' : ''}`}
       >
         <input type={type} name={name} value={value} {...input} />
       </div>

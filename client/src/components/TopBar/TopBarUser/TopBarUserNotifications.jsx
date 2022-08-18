@@ -34,7 +34,7 @@ class TopBarUserNotifications extends React.Component {
       addFriendToCurrentUser,
       addFriendToUser,
     } = this.props;
-    if (currentUser.friendRequests) {
+    if (currentUser.friendRequests && currentUser.friendRequests.length !== 0) {
       return currentUser.friendRequests.map((request, idx) => {
         return (
           <div key={idx} className='top-bar_notification'>
@@ -77,6 +77,10 @@ class TopBarUserNotifications extends React.Component {
           </div>
         );
       });
+    } else {
+      return (
+        <div className='top-bar_no-notifications'>No new notifications</div>
+      );
     }
   };
   render() {
@@ -91,7 +95,8 @@ class TopBarUserNotifications extends React.Component {
           <i className='fas fa-bell'></i>
           <div className='top-bar_notifications-number'>
             <span>
-              {currentUser.friendRequests
+              {currentUser.friendRequests &&
+              currentUser.friendRequests.length !== 0
                 ? currentUser.friendRequests.length
                 : ''}
             </span>

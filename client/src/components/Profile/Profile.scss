@@ -44,13 +44,22 @@
               background-color: $button-background;
             }
           }
+
+          i {
+            padding: 0 5px;
+          }
         }
       }
 
       .profile-info_friends {
-        display: flex;
+        display: inline-grid;
+        grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+        gap: 3px;
+        width: 100%;
+        margin-top: 5px;
 
         .profile-info_friend {
+          padding: 5px;
           display: flex;
           flex-direction: column;
 
@@ -122,11 +131,15 @@
   border-radius: 5px;
   margin-top: 10px;
   font-size: 14px;
+  height: fit-content;
 
   .profile-info_box-header {
     width: fit-content;
+    margin: 0 0 5px 0;
 
-    .profile-info_box-header-name {}
+    .profile-info_box-header-name {
+      font-weight: bold;
+    }
 
     .profile-info_box-header-num {
       padding: 0 5px;
@@ -149,6 +162,10 @@
   .profile-info_left-column {
     width: 100% !important;
     margin-right: 0 !important;
+
+    .profile-info_avatar {
+      margin: auto;
+    }
   }
 
   .profile-info_right-column {

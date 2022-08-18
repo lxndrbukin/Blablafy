@@ -164,11 +164,20 @@ body {
           border-left: 3px solid $active-color;
           transition: border-left 0.5s;
         }
+
       }
     }
 
     .form-input_error {
       padding: 10px 0;
+    }
+
+    .transparent {
+      border: 1px solid $border-color;
+
+      input {
+        background-color: transparent;
+      }
     }
 
     .error {
@@ -218,6 +227,11 @@ body {
 
   .blur {
     border-bottom: 3px solid $main-color;
+  }
+
+  .disabled {
+    opacity: 0.5;
+    pointer-events: none;
   }
 }
 
