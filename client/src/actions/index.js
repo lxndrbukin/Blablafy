@@ -12,7 +12,10 @@ export const createUser = (formValues) => async (dispatch) => {
 };
 
 export const deleteUser = (userId) => async (dispatch) => {
-  const res = await axios.post(`/api/users/${userId}`, { userId });
+  const res = await axios.post(`/api/users/${userId}`, {
+    userId,
+    deleteUser: true,
+  });
   dispatch({ type: 'DELETE_USER', payload: res.data });
 };
 
@@ -32,7 +35,8 @@ export const fetchCurrentUser = () => async (dispatch) => {
 };
 
 export const fetchUser = (userId) => async (dispatch) => {
-  const res = await axios.get(`/api/user/`, { ...userId });
+  await axios.post('/api/user', { userId });
+  const res = await axios.get('/api/user');
   dispatch({ type: 'FETCH_USER', payload: res.data });
 };
 

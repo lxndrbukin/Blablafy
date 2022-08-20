@@ -6,7 +6,6 @@ export const Input = ({
   name,
   type,
   value,
-  style,
   errorUsernameStatus,
   errorPasswordStatus,
   errorMessage,
@@ -22,7 +21,7 @@ export const Input = ({
   };
 
   return (
-    <div className='form-input' style={style}>
+    <div className='form-input'>
       <label>{label}</label>
       <div
         className={`input-container ${
