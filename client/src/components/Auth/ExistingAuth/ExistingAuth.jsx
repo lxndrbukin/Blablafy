@@ -6,21 +6,16 @@ import { loginUser } from '../../../actions';
 
 class ExistingAuth extends React.Component {
   state = {
-    errorUsernameStatus: false,
-    errorPasswordStatus: false,
+    errorStatus: false,
   };
 
   onSubmit = (formValues) => {
     try {
-      if (!formValues.username) {
-        this.setState({ errorUsernameStatus: true });
-        throw Error('Invalid Username');
-      } else if (!formValues.password) {
-        this.setState({ errorPasswordStatus: true });
-        throw Error('Invalid Password');
+      if (!formValues.username || !formValues.password) {
+        this.setState({ errorStatus: true });
+        throw Error('Invalid Entry');
       } else {
-        this.setState({ errorUsernameStatus: false });
-        this.setState({ errorPasswordStatus: false });
+        this.setState({ errorStatus: false });
         this.props.loginUser(formValues);
       }
     } catch (err) {
@@ -34,10 +29,10 @@ class ExistingAuth extends React.Component {
         <Field
           onBlur={(e) =>
             e.target.value === ''
-              ? this.setState({ errorUsernameStatus: true })
-              : this.setState({ errorUsernameStatus: false })
+              ? this.setState({ errorStatus: true })
+              : this.setState({ errorStatus: false })
           }
-          errorUsernameStatus={this.state.errorUsernameStatus}
+          errorStatus={this.state.errorStatus}
           errorMessage='Please enter a valid Username'
           component={Input}
           type='text'
@@ -47,10 +42,10 @@ class ExistingAuth extends React.Component {
         <Field
           onBlur={(e) =>
             e.target.value === ''
-              ? this.setState({ errorPasswordStatus: true })
-              : this.setState({ errorPasswordStatus: false })
+              ? this.setState({ errorStatus: true })
+              : this.setState({ errorStatus: false })
           }
-          errorPasswordStatus={this.state.errorPasswordStatus}
+          errorStatus={this.state.errorStatus}
           errorMessage='Please enter a valid Password'
           component={Input}
           type='password'

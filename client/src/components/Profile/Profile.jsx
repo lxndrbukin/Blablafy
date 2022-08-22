@@ -2,7 +2,7 @@ import React from 'react';
 import './Profile.scss';
 import { connect } from 'react-redux';
 import {
-  fetchUsers,
+  fetchUser,
   sendFriendRequest,
   receiveFriendRequest,
 } from '../../actions';
@@ -10,9 +10,9 @@ import ProfileDetails from './ProfileDetails/ProfileDetails';
 
 class Profile extends React.Component {
   componentDidMount() {
-    const { currentUser, match, fetchUsers } = this.props;
+    const { currentUser, match, fetchUser } = this.props;
     if (currentUser.userId !== parseInt(match.params.id)) {
-      fetchUsers();
+      fetchUser(parseInt(match.params.id));
     }
   }
 
@@ -33,7 +33,7 @@ class Profile extends React.Component {
     if (currentUser && currentUser.userId === parseInt(match.params.id)) {
       return (
         <ProfileDetails
-          username={currentUser ? currentUser.username : []}
+          username={currentUser ? currentUser.username : ''}
           friends={currentUser ? currentUser.friends : []}
           friendRequests={currentUser ? currentUser.friendRequests : []}
           sentRequests={currentUser ? currentUser.sentRequests : []}
@@ -46,7 +46,7 @@ class Profile extends React.Component {
     ) {
       return (
         <ProfileDetails
-          username={user ? user.username : []}
+          username={user ? user.username : ''}
           friends={user ? user.friends : []}
           friendRequests={user ? user.friendRequests : []}
           sentRequests={user ? user.sentRequests : []}
@@ -61,15 +61,15 @@ class Profile extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     currentUser: state.currentUser,
-    user: state.users[ownProps.match.params.id - 1],
+    user: state.user,
   };
 };
 
 export default connect(mapStateToProps, {
-  fetchUsers,
+  fetchUser,
   sendFriendRequest,
   receiveFriendRequest,
 })(Profile);

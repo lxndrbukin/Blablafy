@@ -1,33 +1,46 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { sendFriendRequest, receiveFriendRequest } from '../../../actions';
+import {
+  sendFriendRequest,
+  receiveFriendRequest,
+  fetchUser,
+} from '../../../actions';
 
 const ProfileDetailsLeft = ({
   username,
   friends,
   id,
   currentUser,
+  fetchUser,
   sendFriendRequest,
   receiveFriendRequest,
 }) => {
   const renderFriendsList = () => {
-    return friends.map((friend, idx) => {
-      return (
-        <NavLink key={idx} to={`/profile/${friend.userId}`}>
-          <div className='profile-info_friend'>
-            <div
-              className='profile-info_friend-avatar'
-              style={{
-                backgroundImage:
-                  "url('https://www.savoric.com/wp-content/uploads/2018/03/profil-pic_dummy.png')",
-              }}
-            ></div>
-            <span className='profile-info_friend-name'>{friend.username}</span>
-          </div>
-        </NavLink>
-      );
-    });
+    if (friends) {
+      return friends.map((friend, idx) => {
+        return (
+          <NavLink
+            onClick={() => fetchUser(friend.userId)}
+            key={idx}
+            to={`/profile/${friend.userId}`}
+          >
+            <div className='profile-info_friend'>
+              <div
+                className='profile-info_friend-avatar'
+                style={{
+                  backgroundImage:
+                    "url('https://www.savoric.com/wp-content/uploads/2018/03/profil-pic_dummy.png')",
+                }}
+              ></div>
+              <span className='profile-info_friend-name'>
+                {friend.username}
+              </span>
+            </div>
+          </NavLink>
+        );
+      });
+    }
   };
 
   const showEditButton = () => {
@@ -107,7 +120,7 @@ const ProfileDetailsLeft = ({
           <NavLink to={`/profile/${id}/friends`}>
             <span className='profile-info_box-header-name'>Friends</span>
             <span className='profile-info_box-header-num'>
-              {friends.length}
+              {friends ? friends.length : 0}
             </span>
           </NavLink>
         </div>
@@ -124,6 +137,7 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
+  fetchUser,
   sendFriendRequest,
   receiveFriendRequest,
 })(ProfileDetailsLeft);

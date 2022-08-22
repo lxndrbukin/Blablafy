@@ -4,7 +4,7 @@ export const usersReducer = (state = [], action) => {
       return state, action.payload;
     case 'FETCH_USERS':
       return state, action.payload;
-    case 'FETCH_USER':
+    case 'SEARCH_FOR_USERS':
       return state, action.payload;
     case 'RECEIVE_REQUEST':
       return state, action.payload;

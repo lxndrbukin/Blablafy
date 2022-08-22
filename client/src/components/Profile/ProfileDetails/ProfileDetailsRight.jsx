@@ -28,12 +28,14 @@ const ProfileDetailsRight = ({
         <div className='profile-info_details'>
           <div className='profile-info_details-numbers'>
             <div className='profile-info_details-number'>
-              <span className='profile-info_details-num'>{friends.length}</span>
+              <span className='profile-info_details-num'>
+                {friends ? friends.length : 0}
+              </span>
               <span className='profile-info_details-num-name'>Friends</span>
             </div>
             <div className='profile-info_details-number'>
               <span className='profile-info_details-num'>
-                {friendRequests.length}
+                {friendRequests ? friendRequests.length : 0}
               </span>
               <span className='profile-info_details-num-name'>Followers</span>
             </div>

@@ -45,6 +45,17 @@ module.exports = (app) => {
       .clone();
   });
 
+  app.get('/api/users/:search', async (req, res) => {
+    if (req.params === {}) {
+      res.send([]);
+    } else {
+      const users = await User.find({
+        username: { $regex: req.params.search },
+      }).clone();
+      res.send(users);
+    }
+  });
+
   app.put('/api/users', async (req, res) => {
     if (req.body.request === '$push' && req.body.friend === false) {
       const user = await User.findOneAndUpdate(
@@ -80,6 +91,12 @@ module.exports = (app) => {
     await User.findOneAndRemove({ userId: req.body.userId }).clone();
     await User.find({}, (err, users) => {
       res.send(users);
+    }).clone();
+  });
+
+  app.get('/api/user/:id', async (req, res) => {
+    await User.findOne({ userId: req.params.id }, (err, user) => {
+      res.send(user);
     }).clone();
   });
 };

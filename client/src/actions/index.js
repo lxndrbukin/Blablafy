@@ -35,14 +35,18 @@ export const fetchCurrentUser = () => async (dispatch) => {
 };
 
 export const fetchUser = (userId) => async (dispatch) => {
-  await axios.post('/api/user', { userId });
-  const res = await axios.get('/api/user');
+  const res = await axios.get(`/api/user/${userId}`);
   dispatch({ type: 'FETCH_USER', payload: res.data });
 };
 
 export const fetchUsers = () => async (dispatch) => {
   const res = await axios.get('/api/users');
   dispatch({ type: 'FETCH_USERS', payload: res.data });
+};
+
+export const searchForUsers = (searchRequest) => async (dispatch) => {
+  const res = await axios.get(`/api/users/${searchRequest}`);
+  dispatch({ type: 'SEARCH_FOR_USERS', payload: res.data });
 };
 
 export const sendFriendRequest = (userId, user) => async (dispatch) => {

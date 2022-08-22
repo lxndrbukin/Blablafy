@@ -1,23 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, autofill } from 'redux-form';
 import { Input } from '../../assets/Inputs';
 
 class ProfileEdit extends React.Component {
   render() {
     return (
-      <div className='profile-info_box'>
+      <div
+        className='profile-info_box'
+        style={{ margin: '10px auto auto auto' }}
+      >
         <div className='profile-info_box-header'>
           <div className='profile-info_box-header-name'>Edit Profile</div>
         </div>
-        <form className='form'>
-          <Field
-            component={Input}
-            label='ID'
-            name='userId'
-            transparent
-            disabled
-          />
+        <form className='form' style={{ width: 'fit-content', margin: 'auto' }}>
           <Field
             component={Input}
             label='First Name'

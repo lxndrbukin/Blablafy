@@ -2,7 +2,7 @@ import React from 'react';
 import './TopBar.scss';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchUsers } from '../../actions';
+import { searchForUsers, fetchUser } from '../../actions';
 import TopBarLogo from './TopBarLogo/TopBarLogo';
 import TopBarUser from './TopBarUser/TopBarUser';
 import TopBarUserNotifications from './TopBarUser/TopBarUserNotifications';
@@ -14,11 +14,12 @@ class TopBar extends React.Component {
   };
 
   search() {
-    this.props.fetchUsers();
+    console.log(this.state.searchRequest);
+    this.props.searchForUsers(this.state.searchRequest);
   }
 
   changeState(e) {
-    this.setState({ searchRequest: e.target.value });
+    this.setState({ searchRequest: e.target.value }, this.search);
     this.setState(
       e.target.value.length > 0
         ? { searchWindow: true }
@@ -30,28 +31,27 @@ class TopBar extends React.Component {
     const { searchRequest } = this.state;
     const { users } = this.props;
     if (searchRequest !== '' && users.length !== 0) {
-      return this.props.users
-        .filter((user) => user.username.includes(searchRequest))
-        .map((user, idx) => {
-          return (
-            <NavLink
-              className='top-bar_search-result'
-              key={idx}
-              to={`/profile/${user.userId}`}
-            >
-              <div
-                className='top-bar_search-result_avatar'
-                style={{
-                  backgroundImage:
-                    "url('https://www.savoric.com/wp-content/uploads/2018/03/profil-pic_dummy.png')",
-                }}
-              ></div>
-              <div className='top-bar_search-result_username'>
-                {user.username}
-              </div>
-            </NavLink>
-          );
-        });
+      return this.props.users.map((user, idx) => {
+        return (
+          <NavLink
+            onClick={() => this.props.fetchUser(user.userId)}
+            className='top-bar_search-result'
+            key={idx}
+            to={`/profile/${user.userId}`}
+          >
+            <div
+              className='top-bar_search-result_avatar'
+              style={{
+                backgroundImage:
+                  "url('https://www.savoric.com/wp-content/uploads/2018/03/profil-pic_dummy.png')",
+              }}
+            ></div>
+            <div className='top-bar_search-result_username'>
+              {user.username}
+            </div>
+          </NavLink>
+        );
+      });
     } else {
       return 'Loading';
     }
@@ -59,11 +59,7 @@ class TopBar extends React.Component {
 
   showResult() {
     const { users } = this.props;
-    const { searchRequest } = this.state;
-    if (
-      users.length !== 0 &&
-      users.filter((user) => user.username.includes(searchRequest)).length === 0
-    ) {
+    if (users.length !== 0 && users.length === 0) {
       return 'No results';
     } else {
       return this.searchResult();
@@ -71,7 +67,6 @@ class TopBar extends React.Component {
   }
 
   render() {
-    const { fetchUsers } = this.props;
     const { searchRequest } = this.state;
     return (
       <div className='top-bar_wrapper'>
@@ -85,7 +80,6 @@ class TopBar extends React.Component {
                 }}
                 onChange={(e) => {
                   this.changeState(e);
-                  setTimeout(fetchUsers, 1500);
                 }}
                 type='text'
                 placeholder='Find people here'
@@ -123,4 +117,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchUsers })(TopBar);
+export default connect(mapStateToProps, { searchForUsers, fetchUser })(TopBar);

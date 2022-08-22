@@ -1,39 +1,42 @@
 import React from 'react';
 
-export const Input = ({
-  label,
-  input,
-  name,
-  type,
-  value,
-  errorUsernameStatus,
-  errorPasswordStatus,
-  errorMessage,
-  disabled,
-  transparent,
-}) => {
-  const showErrorMessage = () => {
-    if (errorUsernameStatus && errorMessage) {
+export class Input extends React.Component {
+  showErrorMessage = () => {
+    const { errorStatus, errorMessage } = this.props;
+    if (errorStatus && errorMessage) {
       return <div className='form-input_error'>{errorMessage}</div>;
-    } else if (errorPasswordStatus && errorMessage) {
+    } else if (errorStatus && errorMessage) {
       return <div className='form-input_error'>{errorMessage}</div>;
     }
   };
-
-  return (
-    <div className='form-input'>
-      <label>{label}</label>
-      <div
-        className={`input-container ${
-          errorUsernameStatus || errorPasswordStatus ? 'error' : ''
-        } ${disabled ? 'disabled' : ''} ${transparent ? 'transparent' : ''}`}
-      >
-        <input type={type} name={name} value={value} {...input} />
+  render() {
+    const {
+      label,
+      input,
+      name,
+      type,
+      value,
+      state,
+      changeState,
+      errorStatus,
+      disabled,
+      transparent,
+    } = this.props;
+    return (
+      <div className='form-input'>
+        <label>{label}</label>
+        <div
+          className={`input-container ${errorStatus ? 'error' : ''} ${
+            disabled ? 'disabled' : ''
+          } ${transparent ? 'transparent' : ''}`}
+        >
+          <input onClick type={type} name={name} value={value} {...input} />
+        </div>
+        {this.showErrorMessage()}
       </div>
-      {showErrorMessage()}
-    </div>
-  );
-};
+    );
+  }
+}
 
 export const FileInput = ({
   input: { value: omitValue, ...inputProps },
