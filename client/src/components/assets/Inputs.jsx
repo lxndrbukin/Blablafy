@@ -25,7 +25,7 @@ export class Input extends React.Component {
         <div
           className={`input-container ${
             emptyFields && emptyFields[fieldName] ? 'error' : ''
-          } ${disabled ? 'disabled' : ''} ${transparent ? 'transparent' : ''}`}
+          } ${disabled ? 'disabled' : ''}${transparent ? 'transparent' : ''}`}
         >
           <input type={type} name={name} value={value} {...input} />
         </div>

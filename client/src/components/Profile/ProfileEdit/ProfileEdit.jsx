@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { reduxForm, Field, autofill } from 'redux-form';
+import { reduxForm, Field } from 'redux-form';
 import { Input } from '../../assets/Inputs';
 
 class ProfileEdit extends React.Component {
@@ -15,15 +15,31 @@ class ProfileEdit extends React.Component {
         </div>
         <form className='form' style={{ width: 'fit-content', margin: 'auto' }}>
           <Field
+            errorMessage='Please enter your First Name'
             component={Input}
             label='First Name'
             name='firstName'
+            fieldName='firstName'
+            onBlur={(e) => {
+              e.target.value === ''
+                ? this.setState({ [e.target.name]: true })
+                : this.setState({ [e.target.name]: null });
+            }}
+            emptyFields={this.state ? this.state : null}
             transparent
           />
           <Field
+            errorMessage='Please enter your Last Name'
             component={Input}
             label='Last Name'
             name='lastName'
+            fieldName='lastName'
+            onBlur={(e) => {
+              e.target.value === ''
+                ? this.setState({ [e.target.name]: true })
+                : this.setState({ [e.target.name]: null });
+            }}
+            emptyFields={this.state ? this.state : null}
             transparent
           />
         </form>
