@@ -5,17 +5,11 @@ import { reduxForm, Field } from 'redux-form';
 import { loginUser } from '../../../actions';
 
 class ExistingAuth extends React.Component {
-  state = {
-    errorStatus: false,
-  };
-
   onSubmit = (formValues) => {
     try {
       if (!formValues.username || !formValues.password) {
-        this.setState({ errorStatus: true });
         throw Error('Invalid Entry');
       } else {
-        this.setState({ errorStatus: false });
         this.props.loginUser(formValues);
       }
     } catch (err) {
@@ -27,30 +21,32 @@ class ExistingAuth extends React.Component {
     return (
       <form className='form' onSubmit={this.props.handleSubmit(this.onSubmit)}>
         <Field
-          onBlur={(e) =>
-            e.target.value === ''
-              ? this.setState({ errorStatus: true })
-              : this.setState({ errorStatus: false })
-          }
-          errorStatus={this.state.errorStatus}
           errorMessage='Please enter a valid Username'
           component={Input}
           type='text'
           label='Username'
           name='username'
+          fieldName='username'
+          onBlur={(e) => {
+            e.target.value === ''
+              ? this.setState({ [e.target.name]: true })
+              : this.setState({ [e.target.name]: null });
+          }}
+          emptyFields={this.state ? this.state : null}
         />
         <Field
-          onBlur={(e) =>
-            e.target.value === ''
-              ? this.setState({ errorStatus: true })
-              : this.setState({ errorStatus: false })
-          }
-          errorStatus={this.state.errorStatus}
           errorMessage='Please enter a valid Password'
           component={Input}
           type='password'
           label='Password'
           name='password'
+          fieldName='password'
+          onBlur={(e) => {
+            e.target.value === ''
+              ? this.setState({ [e.target.name]: true })
+              : this.setState({ [e.target.name]: null });
+          }}
+          emptyFields={this.state}
         />
         <input value='Sign In' className='form-button' type='submit' />
       </form>

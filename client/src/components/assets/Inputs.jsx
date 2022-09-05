@@ -2,10 +2,8 @@ import React from 'react';
 
 export class Input extends React.Component {
   showErrorMessage = () => {
-    const { errorStatus, errorMessage } = this.props;
-    if (errorStatus && errorMessage) {
-      return <div className='form-input_error'>{errorMessage}</div>;
-    } else if (errorStatus && errorMessage) {
+    const { emptyFields, errorMessage, fieldName } = this.props;
+    if (emptyFields && emptyFields[fieldName]) {
       return <div className='form-input_error'>{errorMessage}</div>;
     }
   };
@@ -16,9 +14,8 @@ export class Input extends React.Component {
       name,
       type,
       value,
-      state,
-      changeState,
-      errorStatus,
+      emptyFields,
+      fieldName,
       disabled,
       transparent,
     } = this.props;
@@ -26,11 +23,11 @@ export class Input extends React.Component {
       <div className='form-input'>
         <label>{label}</label>
         <div
-          className={`input-container ${errorStatus ? 'error' : ''} ${
-            disabled ? 'disabled' : ''
-          } ${transparent ? 'transparent' : ''}`}
+          className={`input-container ${
+            emptyFields && emptyFields[fieldName] ? 'error' : ''
+          } ${disabled ? 'disabled' : ''} ${transparent ? 'transparent' : ''}`}
         >
-          <input onClick type={type} name={name} value={value} {...input} />
+          <input type={type} name={name} value={value} {...input} />
         </div>
         {this.showErrorMessage()}
       </div>
