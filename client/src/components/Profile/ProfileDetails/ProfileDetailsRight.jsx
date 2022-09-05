@@ -2,15 +2,19 @@ import React from 'react';
 
 const ProfileDetailsRight = ({
   username,
+  firstName,
+  lastName,
+  email,
   friends,
   friendRequests,
-  sentRequests,
 }) => {
   return (
     <div className='profile-info_right-column'>
       <div className='profile-info_box'>
         <div className='profile-info_box-line'>
-          <div className='profile-info_name'>{username}</div>
+          <div className='profile-info_name'>
+            {firstName} {lastName}
+          </div>
           <div className='profile-info_status'>Set your status</div>
         </div>
         <div className='profile-info_box-line'>
@@ -22,6 +26,10 @@ const ProfileDetailsRight = ({
             <div className='profile-info_details-line'>
               <span className='profile-info_details-line-name'>City:</span>
               <span className='profile-info_details-line-info'>Birmingham</span>
+            </div>
+            <div className='profile-info_details-line'>
+              <span className='profile-info_details-line-name'>Email:</span>
+              <span className='profile-info_details-line-info'>{email}</span>
             </div>
           </div>
         </div>

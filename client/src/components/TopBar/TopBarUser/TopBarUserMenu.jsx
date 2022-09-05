@@ -3,7 +3,14 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../../../actions';
 import { NavLink } from 'react-router-dom';
 
-const TopBarUserMenu = ({ username, userId, showMenu, logoutUser }) => {
+const TopBarUserMenu = ({
+  username,
+  firstName,
+  lastName,
+  userId,
+  showMenu,
+  logoutUser,
+}) => {
   const menuButtons = () => {
     if (userId) {
       return (
@@ -16,7 +23,9 @@ const TopBarUserMenu = ({ username, userId, showMenu, logoutUser }) => {
                   backgroundImage: `url('https://www.savoric.com/wp-content/uploads/2018/03/profil-pic_dummy.png')`,
                 }}
               ></div>
-              <span className='user-profile-menu_name'>{username}</span>
+              <span className='user-profile-menu_name'>
+                {firstName} {lastName}
+              </span>
             </div>
             <div className='user-profile-menu_arrow'></div>
           </NavLink>

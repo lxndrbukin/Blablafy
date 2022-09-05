@@ -42,6 +42,21 @@ class ProfileEdit extends React.Component {
             emptyFields={this.state ? this.state : null}
             transparent
           />
+          <Field
+            errorMessage='Please enter a valid Email Address'
+            component={Input}
+            label='Email'
+            name='email'
+            fieldName='email'
+            onBlur={(e) => {
+              e.target.value === ''
+                ? this.setState({ [e.target.name]: true })
+                : this.setState({ [e.target.name]: null });
+            }}
+            emptyFields={this.state ? this.state : null}
+            transparent
+          />
+          <input value='Submit' className='form-button' type='submit' />
         </form>
       </div>
     );

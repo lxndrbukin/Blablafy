@@ -19,6 +19,11 @@ export const deleteUser = (userId) => async (dispatch) => {
   dispatch({ type: 'DELETE_USER', payload: res.data });
 };
 
+export const editUser = (formValues) => async (dispatch) => {
+  const res = await axios.put('/api/current_user', { ...formValues });
+  dispatch({ type: 'EDIT_USER', payload: res.data });
+};
+
 export const loginUser = (formValues) => async (dispatch) => {
   const res = await axios.post('/authorize', { ...formValues });
   dispatch({ type: 'LOGIN_USER', payload: res.data });

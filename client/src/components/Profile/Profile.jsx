@@ -34,6 +34,9 @@ class Profile extends React.Component {
       return (
         <ProfileDetails
           username={currentUser ? currentUser.username : ''}
+          firstName={currentUser ? currentUser.firstName : ''}
+          lastName={currentUser ? currentUser.lastName : ''}
+          email={currentUser ? currentUser.email : ''}
           friends={currentUser ? currentUser.friends : []}
           friendRequests={currentUser ? currentUser.friendRequests : []}
           sentRequests={currentUser ? currentUser.sentRequests : []}
@@ -47,6 +50,9 @@ class Profile extends React.Component {
       return (
         <ProfileDetails
           username={user ? user.username : ''}
+          firstName={user ? user.firstName : ''}
+          lastName={user ? user.lastName : ''}
+          email={user ? user.email : ''}
           friends={user ? user.friends : []}
           friendRequests={user ? user.friendRequests : []}
           sentRequests={user ? user.sentRequests : []}

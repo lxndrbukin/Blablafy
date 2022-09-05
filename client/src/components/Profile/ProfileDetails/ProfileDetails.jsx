@@ -4,6 +4,9 @@ import ProfileDetailsRight from './ProfileDetailsRight';
 
 const ProfileDetails = ({
   username,
+  firstName,
+  lastName,
+  email,
   friends,
   friendRequests,
   sentRequests,
@@ -19,7 +22,10 @@ const ProfileDetails = ({
         sentRequests={sentRequests}
       />
       <ProfileDetailsRight
+        firstName={firstName}
+        lastName={lastName}
         username={username}
+        email={email}
         friends={friends}
         friendRequests={friendRequests}
         sentRequests={sentRequests}

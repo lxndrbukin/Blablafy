@@ -25,7 +25,13 @@ module.exports = (app) => {
     }).clone();
 
     await User.register(
-      { username: req.body.username, userId: id + 1 },
+      {
+        username: req.body.username,
+        userId: id + 1,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+      },
       req.body.password,
       (err, user) => {
         if (err) {

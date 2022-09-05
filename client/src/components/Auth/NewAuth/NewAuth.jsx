@@ -27,20 +27,6 @@ class NewAuth extends React.Component {
           emptyFields={this.state ? this.state : null}
         />
         <Field
-          errorMessage='Please enter a valid Password.'
-          component={Input}
-          type='password'
-          label='Password'
-          name='password'
-          fieldName='password'
-          onBlur={(e) => {
-            e.target.value === ''
-              ? this.setState({ [e.target.name]: true })
-              : this.setState({ [e.target.name]: null });
-          }}
-          emptyFields={this.state ? this.state : null}
-        />
-        <Field
           errorMessage='Please enter your First Name.'
           component={Input}
           type='text'
@@ -75,6 +61,20 @@ class NewAuth extends React.Component {
           label='Email'
           name='email'
           fieldName='email'
+          onBlur={(e) => {
+            e.target.value === ''
+              ? this.setState({ [e.target.name]: true })
+              : this.setState({ [e.target.name]: null });
+          }}
+          emptyFields={this.state ? this.state : null}
+        />
+        <Field
+          errorMessage='Please enter a valid Password.'
+          component={Input}
+          type='password'
+          label='Password'
+          name='password'
+          fieldName='password'
           onBlur={(e) => {
             e.target.value === ''
               ? this.setState({ [e.target.name]: true })

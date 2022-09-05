@@ -70,6 +70,8 @@ class TopBarUser extends React.Component {
           </div>
           <TopBarUserMenu
             username={currentUser.username}
+            firstName={currentUser.firstName}
+            lastName={currentUser.lastName}
             showMenu={showMenu}
             setState={(state) => this.setState({ showMenu: state })}
             userId={currentUser.userId}

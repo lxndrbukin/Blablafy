@@ -9,6 +9,8 @@ import {
 
 const ProfileDetailsLeft = ({
   username,
+  firstName,
+  lastName,
   friends,
   id,
   currentUser,
@@ -34,7 +36,7 @@ const ProfileDetailsLeft = ({
                 }}
               ></div>
               <span className='profile-info_friend-name'>
-                {friend.username}
+                {friend.firstName}
               </span>
             </div>
           </NavLink>
@@ -79,10 +81,14 @@ const ProfileDetailsLeft = ({
               sendFriendRequest(currentUser.userId, {
                 userId: parseInt(id),
                 username: username,
+                firstName: firstName,
+                lastName: lastName,
               });
               receiveFriendRequest(id, {
                 userId: currentUser.userId,
                 username: currentUser.username,
+                firstName: currentUser.firstName,
+                lastName: currentUser.lastName,
               });
             }}
             className='profile-info_button'

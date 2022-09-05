@@ -64,10 +64,14 @@ class TopBarUserNotifications extends React.Component {
                 addFriendToCurrentUser(currentUser.userId, {
                   userId: request.userId,
                   username: request.username,
+                  firstName: request.firstName,
+                  lastName: request.lastName,
                 });
                 addFriendToUser(request.userId, {
                   userId: currentUser.userId,
                   username: currentUser.username,
+                  firstName: currentUser.firstName,
+                  lastName: currentUser.lastName,
                 });
               }}
               className='accept'
