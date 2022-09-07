@@ -1,39 +1,36 @@
 import React from 'react';
 
-export class Input extends React.Component {
-  showErrorMessage = () => {
-    const { emptyFields, errorMessage, fieldName } = this.props;
+export const Input = ({
+  label,
+  input,
+  name,
+  type,
+  value,
+  emptyFields,
+  errorMessage,
+  fieldName,
+  disabled,
+  transparent,
+}) => {
+  const showErrorMessage = () => {
     if (emptyFields && emptyFields[fieldName]) {
       return <div className='form-input_error'>{errorMessage}</div>;
     }
   };
-  render() {
-    const {
-      label,
-      input,
-      name,
-      type,
-      value,
-      emptyFields,
-      fieldName,
-      disabled,
-      transparent,
-    } = this.props;
-    return (
-      <div className='form-input'>
-        <label>{label}</label>
-        <div
-          className={`input-container ${
-            emptyFields && emptyFields[fieldName] ? 'error' : ''
-          } ${disabled ? 'disabled' : ''}${transparent ? 'transparent' : ''}`}
-        >
-          <input type={type} name={name} value={value} {...input} />
-        </div>
-        {this.showErrorMessage()}
+  return (
+    <div className='form-input'>
+      <label>{label}</label>
+      <div
+        className={`input-container ${
+          emptyFields && emptyFields[fieldName] ? 'error' : ''
+        } ${disabled ? 'disabled' : ''}${transparent ? 'transparent' : ''}`}
+      >
+        <input type={type} name={name} value={value} {...input} />
       </div>
-    );
-  }
-}
+      {showErrorMessage()}
+    </div>
+  );
+};
 
 export const FileInput = ({
   input: { value: omitValue, ...inputProps },
@@ -77,6 +74,15 @@ export const Textarea = ({ label, name, placeholder, input }) => {
         placeholder={placeholder}
         {...input}
       />
+    </div>
+  );
+};
+
+export const Calendar = ({ label, transparent }) => {
+  return (
+    <div className={`form-calendar ${transparent ? 'transparent' : ''}`}>
+      <label>{label}</label>
+      <input type='date' />
     </div>
   );
 };

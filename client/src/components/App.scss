@@ -87,6 +87,7 @@ body {
 
     label {
       padding: 0 5px;
+      color: $link-color;
     }
 
     textarea {
@@ -143,6 +144,7 @@ body {
 
     label {
       padding: 0 5px;
+      color: $link-color;
     }
 
     .input-container {
@@ -203,6 +205,40 @@ body {
         &:focus {
           border-left: 3px solid transparent;
         }
+      }
+    }
+  }
+
+  .form-calendar {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: auto;
+
+    input {
+      width: 294px;
+      height: 35px;
+      padding: 0px 2px 0px 5px;
+    }
+
+    label {
+      padding: 0 5px;
+      color: $link-color;
+    }
+
+    ::-webkit-datetime-edit { width: 100%; }
+    ::-webkit-datetime-edit-text { }
+    ::-webkit-datetime-edit-month-field {  }
+    ::-webkit-datetime-edit-day-field {  }
+    ::-webkit-datetime-edit-year-field {  }
+    ::-webkit-inner-spin-button { display: none; }
+    // ::-webkit-calendar-picker-indicator { background: orange; }
+
+    &.transparent {
+
+      input {
+        border: 1px solid $border-color;
+        background-color: $panel-color;
       }
     }
   }

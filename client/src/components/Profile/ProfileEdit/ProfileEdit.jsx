@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
-import { Input } from '../../assets/Inputs';
+import { Input, Calendar } from '../../assets/Inputs';
 
 class ProfileEdit extends React.Component {
   render() {
@@ -56,6 +56,12 @@ class ProfileEdit extends React.Component {
             emptyFields={this.state ? this.state : null}
             transparent
           />
+          <Field
+            name='birthday'
+            component={Calendar}
+            label='Birthday'
+            transparent
+          />
           <input value='Submit' className='form-button' type='submit' />
         </form>
       </div>
@@ -67,7 +73,9 @@ const mapStateToProps = (state) => {
   return {
     currentUser: state.currentUser,
     initialValues: {
-      userId: state.currentUser ? state.currentUser.userId : '',
+      firstName: state.currentUser ? state.currentUser.firstName : '',
+      lastName: state.currentUser ? state.currentUser.lastName : '',
+      email: state.currentUser ? state.currentUser.email : '',
     },
   };
 };
