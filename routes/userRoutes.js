@@ -49,10 +49,24 @@ module.exports = (app) => {
     if (req.params === {}) {
       res.send([]);
     } else {
-      const users = await User.find({
-        username: { $regex: req.params.search },
-      }).clone();
-      res.send(users);
+      if (req.params.search.includes(' ')) {
+        const name = req.params.search.split(' ');
+        const users = await User.find({
+          firstName: { $regex: name[0] },
+          lastName: { $regex: name[1] },
+        }).clone();
+        res.send(users);
+      } else {
+        let users = await User.find({
+          firstName: { $regex: req.params.search },
+        }).clone();
+        if (users.length === 0) {
+          users = await User.find({
+            lastName: { $regex: req.params.search },
+          }).clone();
+        }
+        res.send(users);
+      }
     }
   });
 

@@ -175,6 +175,7 @@ body {
 
     .transparent {
       border: 1px solid $border-color;
+      background-color: $panel-color;
 
       input {
         background-color: transparent;

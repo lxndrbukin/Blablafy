@@ -47,7 +47,7 @@ class TopBar extends React.Component {
               }}
             ></div>
             <div className='top-bar_search-result_username'>
-              {user.username}
+              {user.firstName} {user.lastName}
             </div>
           </NavLink>
         );
@@ -76,7 +76,9 @@ class TopBar extends React.Component {
             <div className='top-bar_search-input-wrapper'>
               <input
                 onClick={(e) => {
-                  this.changeState(e);
+                  if (e.target.value !== '') {
+                    this.changeState(e);
+                  }
                 }}
                 onChange={(e) => {
                   this.changeState(e);
