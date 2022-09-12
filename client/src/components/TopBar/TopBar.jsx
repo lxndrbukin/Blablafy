@@ -83,7 +83,6 @@ class TopBar extends React.Component {
                 onChange={(e) => {
                   this.changeState(e);
                 }}
-                onInpu
                 type='text'
                 placeholder='Find people here'
               />

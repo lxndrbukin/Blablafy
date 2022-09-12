@@ -1,4 +1,4 @@
-export const currentUserReducer = (state = {}, action) => {
+export const currentUserReducer = (state = null, action) => {
   switch (action.type) {
     case 'CREATE_USER':
       return state, action.payload;

@@ -11,7 +11,7 @@ import ProfileDetails from './ProfileDetails/ProfileDetails';
 class Profile extends React.Component {
   componentDidMount() {
     const { currentUser, match, fetchUser } = this.props;
-    if (currentUser.userId !== parseInt(match.params.id)) {
+    if (currentUser && currentUser.userId !== parseInt(match.params.id)) {
       fetchUser(parseInt(match.params.id));
     }
   }

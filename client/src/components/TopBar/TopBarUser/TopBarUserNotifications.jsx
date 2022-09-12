@@ -34,7 +34,11 @@ class TopBarUserNotifications extends React.Component {
       addFriendToCurrentUser,
       addFriendToUser,
     } = this.props;
-    if (currentUser.friendRequests && currentUser.friendRequests.length !== 0) {
+    if (
+      currentUser &&
+      currentUser.friendRequests &&
+      currentUser.friendRequests.length !== 0
+    ) {
       return currentUser.friendRequests.map((request, idx) => {
         return (
           <div key={idx} className='top-bar_notification'>
@@ -99,7 +103,8 @@ class TopBarUserNotifications extends React.Component {
           <i className='fas fa-bell'></i>
           <div className='top-bar_notifications-number'>
             <span>
-              {currentUser.friendRequests &&
+              {currentUser &&
+              currentUser.friendRequests &&
               currentUser.friendRequests.length !== 0
                 ? currentUser.friendRequests.length
                 : ''}

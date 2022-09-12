@@ -69,12 +69,12 @@ class TopBarUser extends React.Component {
             <div className='top-bar_user-profile-arrow'></div>
           </div>
           <TopBarUserMenu
-            username={currentUser.username}
-            firstName={currentUser.firstName}
-            lastName={currentUser.lastName}
+            username={currentUser ? currentUser.username : ''}
+            firstName={currentUser ? currentUser.firstName : ''}
+            lastName={currentUser ? currentUser.lastName : ''}
             showMenu={showMenu}
             setState={(state) => this.setState({ showMenu: state })}
-            userId={currentUser.userId}
+            userId={currentUser ? currentUser.userId : ''}
           />
         </div>
       </div>
