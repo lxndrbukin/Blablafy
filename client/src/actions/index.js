@@ -112,3 +112,16 @@ export const addFriendToUser = (userId, currentUser) => async (dispatch) => {
   });
   dispatch({ type: 'ADD_FRIEND_TO_USER', payload: res.data });
 };
+
+export const createChatWithUser = (currentUser, user) => async (dispatch) => {
+  const res = await axios.put('/api/chats', {
+    currentUser,
+    user,
+  });
+  dispatch({ type: 'CREATE_CHAT', payload: res.data });
+};
+
+export const fetchChats = (currentUserId) => async (dispatch) => {
+  const res = await axios.get(`/api/chats/${currentUserId}`);
+  dispatch({ type: 'FETCH_CHATS', payload: res.data });
+};

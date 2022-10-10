@@ -1,4 +1,5 @@
 import React from 'react';
+import { Placeholder } from '../../assets/Placeholder/Placeholder';
 
 const ProfileDetailsRight = ({
   username,
@@ -13,7 +14,11 @@ const ProfileDetailsRight = ({
       <div className='profile-info_box'>
         <div className='profile-info_box-line'>
           <div className='profile-info_name'>
-            {firstName} {lastName}
+            {firstName ? (
+              `${firstName} ${lastName}`
+            ) : (
+              <Placeholder height='24px' width='200px' />
+            )}
           </div>
           <div className='profile-info_status'>Set your status</div>
         </div>
@@ -37,13 +42,21 @@ const ProfileDetailsRight = ({
           <div className='profile-info_details-numbers'>
             <div className='profile-info_details-number'>
               <span className='profile-info_details-num'>
-                {friends ? friends.length : 0}
+                {friends ? (
+                  friends.length
+                ) : (
+                  <Placeholder height='30px' width='30px' />
+                )}
               </span>
               <span className='profile-info_details-num-name'>Friends</span>
             </div>
             <div className='profile-info_details-number'>
               <span className='profile-info_details-num'>
-                {friendRequests ? friendRequests.length : 0}
+                {friendRequests ? (
+                  friendRequests.length
+                ) : (
+                  <Placeholder height='30px' width='30px' />
+                )}
               </span>
               <span className='profile-info_details-num-name'>Followers</span>
             </div>

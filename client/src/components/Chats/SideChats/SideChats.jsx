@@ -1,8 +1,35 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import SideChat from './SideChat';
 import Search from '../../assets/Search';
+import FriendForChat from './FriendForChat';
 
 class SideChats extends React.Component {
+  state = {
+    newChat: false,
+  };
+
+  newChat() {
+    const { newChat } = this.state;
+    this.setState({ newChat: !newChat });
+  }
+
+  showFriendsForChat() {
+    const { friends } = this.props.currentUser;
+    return friends.map((friend) => {
+      const { firstName, lastName, userId } = friend;
+      return (
+        <FriendForChat
+          key={userId}
+          firstName={firstName}
+          lastName={lastName}
+          userId={userId}
+          selectUserToChat={this.props.selectUserToChat}
+        />
+      );
+    });
+  }
+
   showChats() {
     const users = [
       {
@@ -45,13 +72,30 @@ class SideChats extends React.Component {
   }
 
   render() {
+    const { newChat } = this.state;
     return (
       <div className='chats_section'>
+        <i
+          onClick={() => this.newChat()}
+          style={newChat ? { display: 'none' } : { display: 'block' }}
+          className='fas fa-edit'
+        ></i>
+        <i
+          onClick={() => this.newChat()}
+          style={!newChat ? { display: 'none' } : { display: 'block' }}
+          className='fas fa-times'
+        ></i>
         <Search className='chats_search' placeholder='Chats or messages' />
-        {this.showChats()}
+        {!newChat ? this.showChats() : this.showFriendsForChat()}
       </div>
     );
   }
 }
 
-export default SideChats;
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.currentUser,
+  };
+};
+
+export default connect(mapStateToProps, {})(SideChats);

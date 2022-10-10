@@ -10,10 +10,8 @@ import ProfileDetails from './ProfileDetails/ProfileDetails';
 
 class Profile extends React.Component {
   componentDidMount() {
-    const { currentUser, match, fetchUser } = this.props;
-    if (currentUser && currentUser.userId !== parseInt(match.params.id)) {
-      fetchUser(parseInt(match.params.id));
-    }
+    const { match, fetchUser } = this.props;
+    fetchUser(parseInt(match.params.id));
   }
 
   friendRequest() {

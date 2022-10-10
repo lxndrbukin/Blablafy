@@ -54,7 +54,7 @@ body {
 
   .components-wrapper {
     height: calc(100vh - 51px);
-    width: 60%;
+    width: 65%;
     display: flex;
     margin: auto;
     position: relative;
@@ -62,7 +62,6 @@ body {
 
     .container {
       width: 100%;
-      padding: 0 10px;
       display: flex;
     }
   }
@@ -226,12 +225,22 @@ body {
       color: $link-color;
     }
 
-    ::-webkit-datetime-edit { width: 100%; }
-    ::-webkit-datetime-edit-text { }
-    ::-webkit-datetime-edit-month-field {  }
-    ::-webkit-datetime-edit-day-field {  }
-    ::-webkit-datetime-edit-year-field {  }
-    ::-webkit-inner-spin-button { display: none; }
+    ::-webkit-datetime-edit {
+      width: 100%;
+    }
+
+    ::-webkit-datetime-edit-text {}
+
+    ::-webkit-datetime-edit-month-field {}
+
+    ::-webkit-datetime-edit-day-field {}
+
+    ::-webkit-datetime-edit-year-field {}
+
+    ::-webkit-inner-spin-button {
+      display: none;
+    }
+
     // ::-webkit-calendar-picker-indicator { background: orange; }
 
     &.transparent {

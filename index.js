@@ -7,6 +7,7 @@ const keys = require('./services/keys');
 const session = require('express-session');
 
 require('./models/User');
+require('./models/UserChats');
 require('./services/passport');
 
 const app = express();
@@ -44,6 +45,7 @@ mongoose
 
 require('./routes/authRoutes')(app);
 require('./routes/userRoutes')(app);
+require('./routes/chatRoutes')(app);
 
 const PORT = 5000;
 app.listen(PORT, console.log(`SERVER IS RUNNING ON PORT ${PORT}`));

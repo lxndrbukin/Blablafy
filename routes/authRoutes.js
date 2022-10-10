@@ -1,6 +1,7 @@
 const passport = require('passport');
 const mongoose = require('mongoose');
 const User = mongoose.model('users');
+const UserChats = mongoose.model('userChats');
 
 module.exports = (app) => {
   app.post('/authorize', async (req, res) => {
@@ -42,6 +43,11 @@ module.exports = (app) => {
             res,
             () => {
               console.log(`User ${user.username} registered`);
+              new UserChats({
+                userId: user.userId,
+                fullName: `${user.firstName} ${user.lastName}`,
+                chats: [],
+              }).save();
               return res.send(user);
             }
           );
