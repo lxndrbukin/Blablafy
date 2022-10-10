@@ -125,3 +125,12 @@ export const fetchChats = (currentUserId) => async (dispatch) => {
   const res = await axios.get(`/api/chats/${currentUserId}`);
   dispatch({ type: 'FETCH_CHATS', payload: res.data });
 };
+
+export const sendChatMessage =
+  (currentUserId, userId, message) => async (dispatch) => {
+    const res = await axios.put(`/api/chats/${currentUserId}`, {
+      userId,
+      message,
+    });
+    dispatch({ type: 'SEND_CHAT_MESSAGE', payload: res.data });
+  };

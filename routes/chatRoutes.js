@@ -6,10 +6,10 @@ module.exports = (app) => {
     const chatsList = await UserChats.findOne({
       userId: req.body.currentUser.userId,
     }).clone();
-    const chats = chatsList.chats.filter(
-      (chat) => chat.user.userId === req.body.user.userId
-    );
-    if (chats.length === 0) {
+    const chat = chatsList.chats.find((chat) => {
+      chat.user.userId === req.body.user.userId;
+    });
+    if (chat) {
       const newChat = await UserChats.findOneAndUpdate(
         { userId: req.body.currentUser.userId },
         {
@@ -24,6 +24,7 @@ module.exports = (app) => {
       ).clone();
       newChat.save();
     } else {
+      console.log('Nope');
       return;
     }
   });
@@ -34,10 +35,24 @@ module.exports = (app) => {
     }).clone();
   });
 
-  app.get('/api/chats/:id', async (req, res) => {
-    console.log(req.params);
-    await UserChats.findOne({ userId: req.params.id }, (err, chats) => {
+  app.get('/api/chats/:userId', async (req, res) => {
+    await UserChats.findOne({ userId: req.params.userId }, (err, chats) => {
       res.send(chats.chats);
     }).clone();
+  });
+
+  app.put('/api/chats/:userId', async (req, res) => {
+    const chatList = await UserChats.findOne({
+      // userId: req.body.userId,
+      messages: [],
+    }).clone();
+    console.log(chatList);
+    // const chat = chatList.chats.find((chat) => {
+    //   if (chat.user.userId === req.body.userId) {
+    //     return chat;
+    //   }
+    // });
+    // chat.messages.$push(req.body.message);
+    // chatList.save();
   });
 };

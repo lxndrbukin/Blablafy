@@ -1,6 +1,26 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { reduxForm, Field } from 'redux-form';
+import { sendChatMessage } from '../../../actions';
 
 class ActiveChat extends React.Component {
+  messageInput({ input }) {
+    return (
+      <input
+        placeholder='Write a message...'
+        className='active-chat_input-text'
+        type='text'
+        {...input}
+      ></input>
+    );
+  }
+
+  onSubmit = (formValues) => {
+    const { currentUser, user, sendChatMessage } = this.props;
+    console.log(formValues);
+    sendChatMessage(currentUser.userId, user.userId, formValues.message);
+  };
+
   render() {
     const { user } = this.props;
     return (
@@ -17,13 +37,12 @@ class ActiveChat extends React.Component {
             <div>Messages</div>
           </div>
         </div>
-        <form className='active-chat_input'>
-          <textarea
-            placeholder='Write a message...'
-            className='active-chat_input-text'
-            type='text'
-          ></textarea>
-          <button className='active-chat_input-button'>
+        <form
+          onSubmit={this.props.handleSubmit(this.onSubmit)}
+          className='active-chat_input'
+        >
+          <Field component={this.messageInput} name='message' />
+          <button type='submit' className='active-chat_input-button'>
             <i className='fab fa-telegram-plane'></i>
           </button>
         </form>
@@ -32,4 +51,16 @@ class ActiveChat extends React.Component {
   }
 }
 
-export default ActiveChat;
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.currentUser,
+    user: state.user,
+  };
+};
+
+const activeChat = reduxForm({
+  form: 'sendMessage',
+  enableReinitialize: true,
+})(ActiveChat);
+
+export default connect(mapStateToProps, { sendChatMessage })(activeChat);

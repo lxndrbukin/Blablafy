@@ -1,8 +1,16 @@
 import React from 'react';
 
-const SideChat = ({ name, message, avatar, msgTime, msgNum }) => {
+const SideChat = ({
+  name,
+  userId,
+  message,
+  avatar,
+  msgTime,
+  msgNum,
+  selectUserToChat,
+}) => {
   return (
-    <div className='chat'>
+    <div onClick={() => selectUserToChat(userId)} className='chat'>
       <div className='chat_left'>
         <div
           className='chat_user-avatar'

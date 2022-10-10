@@ -31,41 +31,19 @@ class SideChats extends React.Component {
   }
 
   showChats() {
-    const users = [
-      {
-        name: 'Alex',
-        avatar:
-          'https://www.savoric.com/wp-content/uploads/2018/03/profil-pic_dummy.png',
-        message: 'Hi there',
-        msgTime: '9:20',
-        msgNum: 1,
-      },
-      {
-        name: 'Serghey',
-        avatar:
-          'https://www.savoric.com/wp-content/uploads/2018/03/profil-pic_dummy.png',
-        message: 'How are you?',
-        msgTime: '16:46',
-        msgNum: 3,
-      },
-      {
-        name: 'Michael',
-        avatar:
-          'https://www.savoric.com/wp-content/uploads/2018/03/profil-pic_dummy.png',
-        message: 'Hbu',
-        msgTime: '01:53',
-        msgNum: 4,
-      },
-    ];
-    return users.map((user, idx) => {
+    const { chats } = this.props;
+    return chats.map((chat, idx) => {
+      const { user } = chat;
       return (
         <SideChat
           key={idx}
-          name={user.name}
-          avatar={user.avatar}
-          message={user.message}
-          msgNum={user.msgNum}
-          msgTime={user.msgTime}
+          userId={user.userId}
+          name={`${user.firstName} ${user.lastName}`}
+          selectUserToChat={this.props.selectUserToChat}
+          // avatar={user.avatar}
+          // message={user.message}
+          // msgNum={user.msgNum}
+          // msgTime={user.msgTime}
         />
       );
     });
@@ -95,6 +73,7 @@ class SideChats extends React.Component {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.currentUser,
+    chats: state.chats,
   };
 };
 

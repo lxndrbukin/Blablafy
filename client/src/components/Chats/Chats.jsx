@@ -17,16 +17,17 @@ class Chats extends React.Component {
 
   selectUserToChat = (userId) => {
     this.props.fetchUser(userId);
-    console.log(this.props.user);
+    this.setState({ chatWithUser: true });
   };
 
   render() {
     const { selectUserToChat } = this;
+    const { chatWithUser } = this.state;
     const { user } = this.props;
     return (
       <div className='chats'>
         <SideChats selectUserToChat={selectUserToChat} />
-        <ActiveChat user={user} />
+        {chatWithUser ? <ActiveChat user={user} /> : null}
       </div>
     );
   }
