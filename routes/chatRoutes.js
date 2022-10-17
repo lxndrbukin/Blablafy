@@ -6,8 +6,10 @@ module.exports = (app) => {
     const chatsList = await UserChats.findOne({
       userId: req.body.currentUser.userId,
     }).clone();
-    const chat = chatsList.chats.find((chat) => {
-      chat.user.userId === req.body.user.userId;
+    const chat = chatsList.chats.filter((chat) => {
+      if (chat.user.userId === req.body.user.userId) {
+        return chat;
+      }
     });
     if (chat) {
       const newChat = await UserChats.findOneAndUpdate(
@@ -15,9 +17,7 @@ module.exports = (app) => {
         {
           $push: {
             chats: {
-              currentUser: req.body.currentUser,
-              user: req.body.user,
-              messages: [],
+              [`user${req.body.user.userId}`]: [],
             },
           },
         }
